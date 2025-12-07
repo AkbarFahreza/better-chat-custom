@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Quicksand:wght@300..700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-background: #191919;
+  --color-main: #bd5ce1;
+  --color-secondary: #2c2c2c;
+  --color-frontground: #ffffff;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-frontground);
+  user-select: none;
+}
+
+#title {
+  font-family: "Lilita One", sans-serif !important;
+  font-weight: 700;
+}
+
+#chat-preview {
+  background: url("/public/png-background.svg");
+  background-repeat: repeat;
+  background-size: 500px;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--color-main);
+  cursor: pointer;
+  border-radius: 4px;
+}
