@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChromePicker } from "react-color";
 
 interface BackgroundEditorProps {
@@ -34,8 +34,8 @@ function BackgroundEditor({
   }, [showBgPicker]);
 
   return (
-    <div className="flex flex-row items-center relative">
-      <label className=" mr-5">{title}</label>
+    <div className="flex flex-row gap-8 items-center relative">
+      <label>{title}</label>
       <div
         onClick={() => setShowBgPicker(!showBgPicker)}
         className="flex py-1 rounded-sm cursor-pointer px-4 bg-secondary flex-row gap-2 items-center"

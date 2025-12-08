@@ -19,8 +19,10 @@ function deepMerge<T>(target: T, source: Partial<T>): T {
   return result;
 }
 
+// BASE DEFAULT (for General)
 const defaultConfig: ChatConfig = {
   content_config: {
+    content_background_color: "transparent",
     content_margin: { top: 0, right: 0, bottom: 0, left: 0 },
     content_padding: { top: 0, right: 0, bottom: 0, left: 0 },
     content_display: ["row"],
@@ -41,11 +43,31 @@ const defaultConfig: ChatConfig = {
   },
 };
 
+// OWNER default
+const ownerDefault: ChatConfig = {
+  ...defaultConfig,
+  name_config: {
+    ...defaultConfig.name_config,
+    name_background_color: "#FFD600",
+  },
+};
+
+// MODERATOR default
+const moderatorDefault: ChatConfig = {
+  ...defaultConfig,
+};
+
+// MEMBER default
+const memberDefault: ChatConfig = {
+  ...defaultConfig,
+};
+
+// INITIAL STATE
 const initialState: ChatConfigState = {
   general: defaultConfig,
-  owner: defaultConfig,
-  moderator: defaultConfig,
-  member: defaultConfig,
+  owner: ownerDefault,
+  moderator: moderatorDefault,
+  member: memberDefault,
 };
 
 const ChatConfigContext = createContext<any>(undefined);
@@ -57,14 +79,13 @@ export function ChatConfigProvider({
 }) {
   const [selectedRole, setSelectedRole] = useState<Role>("general");
   const [config, setConfig] = useState<ChatConfigState>(initialState);
-
   const [syncEnabled, setSyncEnabled] = useState(false);
 
   const updateConfig = (role: Role, partial: Partial<ChatConfig>) => {
     setConfig((prev) => {
       const updatedRoleConfig = deepMerge(prev[role], partial);
 
-      // SYNC ONLY FIELDS BEING CHANGED (GENERAL ONLY)
+      // SYNC → apply edited GENERAL to all
       if (syncEnabled && role === "general") {
         return {
           general: updatedRoleConfig,
@@ -74,7 +95,7 @@ export function ChatConfigProvider({
         };
       }
 
-      // NORMAL (no sync)
+      // No sync
       return {
         ...prev,
         [role]: updatedRoleConfig,

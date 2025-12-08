@@ -30,8 +30,7 @@ function BasicChat({ role }: { role: Role }) {
   };
 
   const authorNameChipStyle: React.CSSProperties = {
-    background:
-      role === "owner" ? "#FFD600" : name_config.name_background_color,
+    background: name_config.name_background_color,
     padding: `${role === "owner" ? 2 : name_config.name_padding.top}px ${
       role === "owner" ? 4 : name_config.name_padding.right
     }px ${role === "owner" ? 2 : name_config.name_padding.bottom}px ${
@@ -71,7 +70,24 @@ function BasicChat({ role }: { role: Role }) {
     flexWrap: "wrap",
     overflowWrap: "break-word",
   };
-  console.log("ContentStyle", content_config.content_background_color);
+
+  const authorName =
+    role === "owner"
+      ? "@RezaTheOwner"
+      : role === "moderator"
+      ? "@moderator_ngawi"
+      : "@dekreza";
+
+  const authorMessage =
+    role === "owner"
+      ? "Seporsi mie ayam sebelum porsi lainnya"
+      : role === "moderator"
+      ? "Lha elu mah enak member"
+      : role === "member"
+      ? "Yaudah makan aku sini kalo enak"
+      : "Kenapa selalu diingatkan untuk tidak menyakiti tapi tidak diingatkan untuk tidak tersakiti";
+
+  console.log("ContentStyle", name_config.name_);
   return (
     <div className="items-center flex flex-row py-1 ">
       <div id="author-photo" style={AvatarStyle}>
@@ -83,16 +99,11 @@ function BasicChat({ role }: { role: Role }) {
       <div id="content" style={CntStyle}>
         <div style={authorNameChipStyle}>
           <div id="author-name" className="w-fit" style={authorNameStyle}>
-            {role === "owner"
-              ? "@RezaTheOwner"
-              : role === "moderator"
-              ? "@moderator_ngawi"
-              : "@dekreeaz"}
+            {authorName}
           </div>
         </div>
         <span id="message" style={authorMsgStyle}>
-          Hallo aku viewer biasa dan mempunyai pesan yg agak panjang sih, jadi
-          ya gitu sih bang
+          {authorMessage}
         </span>
       </div>
     </div>
