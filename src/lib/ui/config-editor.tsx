@@ -13,7 +13,7 @@ export function ConfigEditor() {
   const [isNameOpen, setIsNameOpen] = useState(false);
 
   return (
-    <div>
+    <div className="max-h-[70vh] h-[70vh] overflow-y-scroll">
       {selectedRole === "general" && <SyncToggle />}
       <div className="w-full relative mt-3">
         <h2
@@ -32,7 +32,7 @@ export function ConfigEditor() {
       </div>
       {isContentOpen && <ContentConfigs />}
 
-      <div className="w-full relative mt-3">
+      <div className="w-full relative mt-8">
         <h2
           className="font-bold bg-background w-fit mb-4 py-2 pr-4  flex flex-row gap-3 cursor-pointer items-center"
           onClick={() => setIsNameOpen(!isNameOpen)}

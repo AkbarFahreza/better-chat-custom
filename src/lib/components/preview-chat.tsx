@@ -30,7 +30,7 @@ function PreviewChat() {
   return (
     <div
       style={{ backgroundColor: previewColor }}
-      className="w-full h-full relative"
+      className="w-full h-[96vh] max-h-[96vh] overflow-y-scroll relative"
     >
       <div
         id="chat-preview"

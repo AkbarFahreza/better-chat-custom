@@ -1,7 +1,8 @@
-import BackgroundEditor from "../background-editor";
+import BackgroundEditor from "../color-editor";
 import { AnimatePresence, motion } from "motion/react";
 import BoxModelControls from "../box-model-controls";
 import { useChatConfig } from "../../../context/chat-config-context";
+import FontEditor from "../fonts-editor";
 
 function NameConfigs() {
   const { selectedRole, config, updateConfig } = useChatConfig();
@@ -46,6 +47,7 @@ function NameConfigs() {
             });
           }}
         />
+        <p className="text-main font-bold text-lg">Spacing</p>
         {/* Content Margin */}
         <BoxModelControls
           label="Margin"
@@ -70,6 +72,7 @@ function NameConfigs() {
             });
           }}
         />
+        <FontEditor />
       </motion.div>
     </AnimatePresence>
   );

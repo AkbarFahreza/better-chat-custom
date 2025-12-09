@@ -49,9 +49,9 @@ function BasicChat({ role }: { role: Role }) {
   };
 
   const authorNameStyle: React.CSSProperties = {
-    fontFamily: name_config.name_fonts_config.font_name,
-    fontSize: name_config.name_fonts_config.font_size,
-    fontWeight: name_config.name_fonts_config.font_weight,
+    fontFamily: `"${name_config.name_font_family}"`,
+    fontSize: name_config.name_font_size,
+    fontWeight: name_config.name_font_weight,
     color:
       role === "moderator"
         ? "#5E84F1"
@@ -59,7 +59,7 @@ function BasicChat({ role }: { role: Role }) {
         ? "#2BA640"
         : role === "owner"
         ? "#111111"
-        : name_config.name_fonts_config.font_color,
+        : name_config.name_font_color,
   };
 
   const authorMsgStyle: React.CSSProperties = {
@@ -87,7 +87,7 @@ function BasicChat({ role }: { role: Role }) {
       ? "Yaudah makan aku sini kalo enak"
       : "Kenapa selalu diingatkan untuk tidak menyakiti tapi tidak diingatkan untuk tidak tersakiti";
 
-  console.log("ContentStyle", name_config.name_);
+  console.log("ContentStyle", name_config.name_font_family);
   return (
     <div className="items-center flex flex-row py-1 ">
       <div id="author-photo" style={AvatarStyle}>

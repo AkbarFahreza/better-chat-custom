@@ -1,18 +1,17 @@
 import React from "react";
 import type { FlexDir } from "../../../types/chat-config";
 import BooleanEditor from "../boolean-editor";
-import BackgroundEditor from "../background-editor";
 import { AnimatePresence, motion } from "motion/react";
 import OptionsEditor from "../options-editor";
 import BoxModelControls from "../box-model-controls";
 import { useChatConfig } from "../../../context/chat-config-context";
+import ColorEditor from "../color-editor";
 
 function ContentConfigs() {
   const { selectedRole, config, updateConfig } = useChatConfig();
   const data = config[selectedRole];
   const updateField = (field: Partial<typeof data>) => {
     updateConfig(selectedRole, {
-      ...data,
       ...field,
     });
   };
@@ -55,6 +54,33 @@ function ContentConfigs() {
           }}
           opt={contentDirectionOpts}
         />
+
+        {/* Background Color (with popup) */}
+        <ColorEditor
+          title="Background Color"
+          bgVal={data.content_config.content_background_color}
+          textVal={
+            data.content_config.content_background_color === undefined
+              ? "rgba(0.0.0.0,0)"
+              : data.content_config.content_background_color
+          }
+          val={data.content_config.content_background_color}
+          change={(c) => {
+            updateField({
+              content_config: {
+                content_background_color: `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`,
+              },
+            });
+          }}
+          click={() => {
+            updateField({
+              content_config: {
+                content_background_color: `rgba(0,0,0,0)`,
+              },
+            });
+          }}
+        />
+        <p className="text-main font-bold text-lg">Spacing</p>
         {/* Content Margin */}
         <BoxModelControls
           label="Margin"
@@ -75,32 +101,6 @@ function ContentConfigs() {
             updateField({
               content_config: {
                 content_padding: next,
-              },
-            });
-          }}
-        />
-
-        {/* Background Color (with popup) */}
-        <BackgroundEditor
-          title="Background Color"
-          bgVal={data.content_config.content_background_color}
-          textVal={
-            data.content_config.content_background_color === undefined
-              ? "rgba(0.0.0.0,0)"
-              : data.content_config.content_background_color
-          }
-          val={data.content_config.content_background_color}
-          change={(c) => {
-            updateField({
-              content_config: {
-                content_background_color: `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`,
-              },
-            });
-          }}
-          click={() => {
-            updateField({
-              content_config: {
-                content_background_color: `rgba(0,0,0,0)`,
               },
             });
           }}

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Quicksand:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lilita+One&family=Quicksand:wght@300..700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -40,4 +40,8 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none; /* Chrome, Edge, Safari */
   margin: 0;
+}
+
+.config-title {
+  @apply min-w-36;
 }
