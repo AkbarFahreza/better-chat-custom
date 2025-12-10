@@ -32,8 +32,6 @@ export default function FontEditor() {
   }, [showFontSelector]);
   // Font Fams Selector
 
-  if (loading) return <p>Loading Google Fonts…</p>;
-
   const selectedFont = fonts.find(
     (f) => f.family === data.name_config.name_font_family
   );
@@ -60,6 +58,7 @@ export default function FontEditor() {
   const weights = selectedFont ? extractWeights(selectedFont.variants) : [];
 
   console.log(showFontSelector);
+  if (loading) return <p>Loading Google Fonts…</p>;
 
   return (
     <div className="flex flex-col gap-4 mt-2">

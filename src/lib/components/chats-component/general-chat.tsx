@@ -89,7 +89,7 @@ function BasicChat({ role }: { role: Role }) {
 
   console.log("ContentStyle", name_config.name_font_family);
   return (
-    <div className="items-center flex flex-row py-1 ">
+    <div className="items-center flex flex-row py-1">
       <div id="author-photo" style={AvatarStyle}>
         <img
           src="https://pbs.twimg.com/profile_images/1978277256003985408/VuGWrOYG_400x400.jpg"

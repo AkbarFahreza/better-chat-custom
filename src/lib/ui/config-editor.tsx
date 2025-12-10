@@ -10,7 +10,7 @@ export function ConfigEditor() {
   const { selectedRole } = useChatConfig();
 
   const [isContentOpen, setIsContentOpen] = useState(true);
-  const [isNameOpen, setIsNameOpen] = useState(false);
+  const [isNameOpen, setIsNameOpen] = useState(true);
 
   return (
     <div className="max-h-[70vh] h-[70vh] overflow-y-scroll">

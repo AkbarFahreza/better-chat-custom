@@ -19,14 +19,12 @@ function BoxModelControls({ label, values, onChange }: Props) {
     });
   };
   return (
-    <div className="flex flex-row gap-8 items-center">
-      <label>{label}</label>
-
+    <div className="flex flex-row items-center">
+      <p className="config-title">{label}</p>
       <div className="flex flex-row gap-4">
         {(["top", "right", "bottom", "left"] as const).map((side) => (
           <div key={side} className="flex flex-row gap-2 items-center">
             <p className="capitalize">{side}</p>
-
             <input
               type="number"
               className="w-13 text-center py-px px-2 bg-secondary rounded"

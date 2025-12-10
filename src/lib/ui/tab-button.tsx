@@ -1,22 +1,31 @@
+import type { ReactNode } from "react";
+
 interface TabButtonProps {
-  name: string;
+  children: ReactNode;
   isActive: boolean;
   isDisabled?: boolean;
-  onClik: () => void;
+  onClick: () => void;
+  classnames?: string;
 }
 
-function TabButton({ name, isActive, isDisabled, onClik }: TabButtonProps) {
+function TabButton({
+  children,
+  isActive,
+  isDisabled,
+  onClick,
+  classnames,
+}: TabButtonProps) {
   return (
     <button
       className={`${isActive ? "border-b border-main text-main" : ""} ${
         isDisabled
           ? "opacity-50 cursor-not-allowed"
           : " hover:text-main cursor-pointer"
-      } py-1.5 px-4 font-bold transition-colors duration-200`}
-      onClick={onClik}
+      } py-1.5 px-4 font-bold transition-colors duration-200 flex flex-row gap-2 ${classnames}`}
+      onClick={onClick}
       disabled={isDisabled}
     >
-      {name}
+      {children}
     </button>
   );
 }

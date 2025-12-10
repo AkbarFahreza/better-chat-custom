@@ -8,6 +8,7 @@ const MemoChat = React.memo(BasicChat);
 function PreviewChat() {
   const [previewColor, setPreviewColor] = useState<string>("rgba(0,0,0,0)");
   const [showColorPicker, setShowColorPicker] = useState<boolean>(false);
+  const [previewChat, setPreviewChat] = useState<boolean>(false);
 
   const pickerRef = useRef<HTMLDivElement | null>(null);
 
@@ -37,8 +38,7 @@ function PreviewChat() {
         className="absolute -z-50 top-0 left-0 h-full w-full"
       ></div>
       <div className="px-4 flex flex-row justify-between py-2 font-bold mb-4 bg-secondary relative">
-        <h2 className="text-2xl">Chat Preview</h2>
-
+        <h2 className="text-base">Chat Preview</h2>
         <div className="flex flex-row items-center gap-2 relative">
           <p className="ml-2 text-sm font-normal">Preview BG</p>
           <span

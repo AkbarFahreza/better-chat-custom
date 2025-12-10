@@ -4,6 +4,8 @@ import { useChatConfig } from "../context/chat-config-context";
 import type { Role } from "../types/chat-config";
 import { ConfigEditor } from "../ui/config-editor";
 import { capitalizeFirstLetter } from "./functions";
+import { Code } from "lucide-react";
+import CSSOutput from "./config-editors/css-output/css-output";
 
 const roles: Role[] = ["general", "owner", "moderator", "member"];
 
@@ -14,36 +16,50 @@ function ConfigSection() {
     <div className=" min-h-[85vh]">
       <div className="flex flex-row gap-4 border-b border-white/60 pb-4">
         <TabButton
-          name="Basic Chat"
           isActive={activeTab === "Basic Chat"}
-          onClik={() => setActiveTab("Basic Chat")}
-        />
+          onClick={() => setActiveTab("Basic Chat")}
+        >
+          <p>Basic Chat</p>
+        </TabButton>
         <TabButton
-          name="Event Chat"
           isDisabled={true}
           isActive={activeTab === "Event Chat"}
-          onClik={() => setActiveTab("Event Chat")}
-        />
+          onClick={() => setActiveTab("Event Chat")}
+        >
+          <p>Event Chat</p>
+        </TabButton>
+        <TabButton
+          isActive={activeTab === "Show CSS"}
+          onClick={() => setActiveTab("Show CSS")}
+          classnames="bg-secondary rounded-sm px-4"
+        >
+          <Code /> <p>Show CSS</p>
+        </TabButton>
       </div>
-      <div className="flex flex-row gap-3 mt-4 mb-4">
-        {roles.map((r) => (
-          <TabButton
-            key={r}
-            name={capitalizeFirstLetter(r)}
-            isActive={selectedRole === r}
-            onClik={() => setSelectedRole(r)}
-          />
-        ))}
-      </div>
+      {activeTab === "Basic Chat" ? (
+        <div className="flex flex-row gap-3 mt-4 mb-4">
+          {roles.map((r) => (
+            <TabButton
+              key={r}
+              isActive={selectedRole === r}
+              onClick={() => setSelectedRole(r)}
+            >
+              {capitalizeFirstLetter(r)}
+            </TabButton>
+          ))}
+        </div>
+      ) : (
+        activeTab === "Event Chat" && <div>I am to lazy to build this</div>
+      )}
       <div className="mt-4">
         {activeTab === "Basic Chat" ? (
-          <div>
-            <ConfigEditor />
-          </div>
+          <ConfigEditor />
+        ) : activeTab === "Event Chat" ? (
+          <div>Event Chat</div>
+        ) : activeTab === "Show CSS" ? (
+          <CSSOutput />
         ) : (
-          <div>
-            <p className="opacity-60">Not implemented</p>
-          </div>
+          ""
         )}
       </div>
     </div>
