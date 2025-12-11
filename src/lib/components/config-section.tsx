@@ -31,9 +31,9 @@ function ConfigSection() {
         <TabButton
           isActive={activeTab === "Show CSS"}
           onClick={() => setActiveTab("Show CSS")}
-          classnames="bg-secondary rounded-sm px-4"
+          classnames="bg-secondary rounded-sm flex flex-row items-center px-4"
         >
-          <Code /> <p>Show CSS</p>
+          <Code size={20} /> <p>Show CSS</p>
         </TabButton>
       </div>
       {activeTab === "Basic Chat" ? (

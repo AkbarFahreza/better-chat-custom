@@ -9,13 +9,29 @@ function BasicChat({ role }: { role: Role }) {
   const { content_config, name_config } = chatConfig;
 
   const flexDisplay = content_config.content_display[0] || ("row" as FlexDir);
+  const nameMargin = name_config.name_margin;
+  const contentMargin = content_config.content_margin;
+
+  const nameMarginStr = [
+    `${nameMargin.top}px`,
+    nameMargin.right === "auto" ? "auto" : `${nameMargin.right}px`,
+    `${nameMargin.bottom}px`,
+    nameMargin.left === "auto" ? "auto" : `${nameMargin.left}px`,
+  ].join(" ");
+  const contentMarginStr = [
+    `${contentMargin.top}px`,
+    contentMargin.right === "auto" ? "auto" : `${contentMargin.right}px`,
+    `${contentMargin.bottom}px`,
+    contentMargin.left === "auto" ? "auto" : `${contentMargin.left}px`,
+  ].join(" ");
 
   const CntStyle: React.CSSProperties = {
     padding: `${content_config.content_padding.top}px ${content_config.content_padding.right}px ${content_config.content_padding.bottom}px ${content_config.content_padding.left}px`,
-    margin: `${content_config.content_margin.top}px ${content_config.content_margin.right}px ${content_config.content_margin.bottom}px ${content_config.content_margin.left}px`,
+    margin: contentMarginStr,
     flexDirection: flexDisplay,
     display: flexDisplay === "column" ? "flex" : "",
     backgroundColor: content_config.content_background_color,
+    borderRadius: `${content_config.content_rounded.top}px ${content_config.content_rounded.right}px ${content_config.content_rounded.bottom}px ${content_config.content_rounded.left}px`,
   };
 
   const AvatarStyle: React.CSSProperties = {
@@ -31,21 +47,11 @@ function BasicChat({ role }: { role: Role }) {
 
   const authorNameChipStyle: React.CSSProperties = {
     background: name_config.name_background_color,
-    padding: `${role === "owner" ? 2 : name_config.name_padding.top}px ${
-      role === "owner" ? 4 : name_config.name_padding.right
-    }px ${role === "owner" ? 2 : name_config.name_padding.bottom}px ${
-      role === "owner" ? 4 : name_config.name_padding.left
-    }px`,
-    margin: `${name_config.name_margin.top}px ${
-      role == "owner" ? 8 : name_config.name_margin.right
-    }px ${name_config.name_margin.bottom}px ${name_config.name_margin.left}px`,
-    borderRadius: `${role === "owner" ? 2 : name_config.name_rounded.top}px ${
-      role === "owner" ? 2 : name_config.name_rounded.right
-    }px ${role === "owner" ? 2 : name_config.name_rounded.bottom}px ${
-      role === "owner" ? 2 : name_config.name_rounded.left
-    }px`,
+    padding: `${name_config.name_padding.top}px ${name_config.name_padding.right}px ${name_config.name_padding.bottom}px ${name_config.name_padding.left}px`,
+    margin: nameMarginStr,
+    borderRadius: `${name_config.name_rounded.top}px ${name_config.name_rounded.right}px ${name_config.name_rounded.bottom}px ${name_config.name_rounded.left}px`,
     border: `${name_config.name_border.border_width}px solid ${name_config.name_border.border_color}`,
-    display: "inline-flex",
+    rotate: `${name_config.name_rotation}deg`,
   };
 
   const authorNameStyle: React.CSSProperties = {
@@ -87,7 +93,7 @@ function BasicChat({ role }: { role: Role }) {
       ? "Yaudah makan aku sini kalo enak"
       : "Kenapa selalu diingatkan untuk tidak menyakiti tapi tidak diingatkan untuk tidak tersakiti";
 
-  console.log("ContentStyle", name_config.name_font_family);
+  console.log("ContentStyle", name_config.name_margin);
   return (
     <div className="items-center flex flex-row py-1">
       <div id="author-photo" style={AvatarStyle}>
@@ -97,7 +103,7 @@ function BasicChat({ role }: { role: Role }) {
         />
       </div>
       <div id="content" style={CntStyle}>
-        <div style={authorNameChipStyle}>
+        <div className=" inline-flex" style={authorNameChipStyle}>
           <div id="author-name" className="w-fit" style={authorNameStyle}>
             {authorName}
           </div>

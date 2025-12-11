@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from "motion/react";
 import BoxModelControls from "../box-model-controls";
 import { useChatConfig } from "../../../context/chat-config-context";
 import FontEditor from "../fonts-editor";
+import NumberEditor from "../number-editor";
+import BooleanEditor from "../boolean-editor";
 
 function NameConfigs() {
   const { selectedRole, config, updateConfig } = useChatConfig();
@@ -47,6 +49,30 @@ function NameConfigs() {
             });
           }}
         />
+        {/* Border radius */}
+        <BoxModelControls
+          isSpacing={false}
+          label="Corner Rounded"
+          values={data.name_config.name_rounded}
+          onChange={(next) => {
+            updateField({
+              name_config: {
+                name_rounded: next,
+              },
+            });
+          }}
+        />
+        <NumberEditor
+          label="Name Rotate"
+          val={data.name_config.name_rotation}
+          change={(e) => {
+            updateField({
+              name_config: {
+                name_rotation: parseInt(e.target.value),
+              },
+            });
+          }}
+        />
         <p className="text-main font-bold text-lg">Spacing</p>
         {/* Content Margin */}
         <BoxModelControls
@@ -72,6 +98,7 @@ function NameConfigs() {
             });
           }}
         />
+
         <FontEditor />
       </motion.div>
     </AnimatePresence>

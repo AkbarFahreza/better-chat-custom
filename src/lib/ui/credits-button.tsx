@@ -10,7 +10,7 @@ export function CreditButton({ link, logoSrc, imageAlt }: CreditButtonProps) {
       href={link}
       target="_blank"
       rel="noreferrer"
-      className="bg-secondary scale-70 origin-right rounded-md hover:shadow-lg hover:shadow-main transition-all duration-200 "
+      className="bg-secondary w-7 h-auto origin-right rounded-md hover:shadow-md hover:shadow-main transition-all duration-200 "
     >
       <img src={logoSrc} alt={imageAlt} />
     </a>

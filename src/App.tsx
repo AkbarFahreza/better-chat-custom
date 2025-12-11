@@ -5,20 +5,22 @@ import { ChatConfigProvider } from "./lib/context/chat-config-context";
 import ResizablePanels from "./lib/components/resizable-panel";
 import PreviewChat from "./lib/components/preview-chat";
 import { GoogleFontsProvider } from "./lib/context/google-fonts-context";
+import SupportsButton from "./lib/ui/supports-button";
 
 function App() {
   const creditsBtn = [
     {
-      link: "https://paypal.me/",
-      logoSrc: "/paypal-logo.svg",
-      imageAlt: "PayPal logo",
+      link: "https://instagram.com/dekreeza",
+      logoSrc: "/instagram-logo.svg",
+      imageAlt: "Instagram dekreza",
     },
     {
       link: "https://www.x.com/revernry",
       logoSrc: "/x-logo.svg",
-      imageAlt: "X logo",
+      imageAlt: "X dekreza",
     },
   ];
+
   return (
     <GoogleFontsProvider>
       <ChatConfigProvider>
@@ -38,7 +40,8 @@ function App() {
                   </h1>
                   <p>Create your own Youtube Custom CSS chat with no code</p>
                 </div>
-                <div className="flex flex-row items-center">
+                <div className="flex flex-row gap-3 items-center z-50">
+                  <SupportsButton />
                   {creditsBtn.map((btn, index) => (
                     <CreditButton
                       key={index}

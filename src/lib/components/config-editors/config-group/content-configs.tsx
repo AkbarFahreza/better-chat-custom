@@ -80,6 +80,19 @@ function ContentConfigs() {
             });
           }}
         />
+        {/* Border radius */}
+        <BoxModelControls
+          isSpacing={false}
+          label="Corner Rounded"
+          values={data.content_config.content_rounded}
+          onChange={(next) => {
+            updateField({
+              content_config: {
+                content_rounded: next,
+              },
+            });
+          }}
+        />
         <p className="text-main font-bold text-lg">Spacing</p>
         {/* Content Margin */}
         <BoxModelControls

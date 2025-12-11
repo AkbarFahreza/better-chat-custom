@@ -19,13 +19,28 @@ export function CSSRenderer(configState: Record<string, any>) {
       const { content_config, name_config } = cfg;
 
       const attr = role !== "general" ? `[author-type="${role}"]` : "";
-
       const contentFlex =
         content_config.content_display[0] === "column"
           ? `  flex-direction: ${content_config.content_display[0]};\n  display: flex;`
           : "";
 
-      const nameMargin = four(name_config.name_margin);
+      const contentMargin = content_config.content_margin;
+      const nameMargin = name_config.name_margin;
+
+      const nameMarginStr = [
+        `${nameMargin.top}px`,
+        nameMargin.right === "auto" ? "auto" : `${nameMargin.right}px`,
+        `${nameMargin.bottom}px`,
+        nameMargin.left === "auto" ? "auto" : `${nameMargin.left}px`,
+      ].join(" ");
+      const contentMarginStr = [
+        `${contentMargin.top}px`,
+        contentMargin.right === "auto" ? "auto" : `${contentMargin.right}px`,
+        `${contentMargin.bottom}px`,
+        contentMargin.left === "auto" ? "auto" : `${contentMargin.left}px`,
+      ].join(" ");
+
+      //   const nameMargin = four(name_config.name_margin);
       const nameRounded = four(name_config.name_rounded);
 
       const shouldPrintMargin = Object.values(name_config.name_margin).some(
@@ -45,7 +60,7 @@ export function CSSRenderer(configState: Record<string, any>) {
       /* CONTENT */
       css += `yt-live-chat-text-message-renderer${attr} {\n`;
       css += `  background: ${content_config.content_background_color};\n`;
-      css += `  margin: ${four(content_config.content_margin)};\n`;
+      css += `  margin: ${contentMarginStr};\n`;
       css += `  padding: ${four(content_config.content_padding)};\n`;
       if (contentFlex) css += contentFlex + "\n";
       css += `}\n\n`;
@@ -54,7 +69,7 @@ export function CSSRenderer(configState: Record<string, any>) {
       css += `.chat-name-chip${attr} {\n`;
       css += `  background: ${name_config.name_background_color};\n`;
       css += `  padding: ${four(name_config.name_padding)};\n`;
-      if (shouldPrintMargin) css += `  margin: ${nameMargin};\n`;
+      if (shouldPrintMargin) css += `  margin: ${nameMarginStr};\n`;
       if (shouldPrintRounded) css += `  border-radius: ${nameRounded};\n`;
       css += `  border: ${name_config.name_border.border_width}px solid ${name_config.name_border.border_color};\n`;
       css += `  display: inline-flex;\n`;

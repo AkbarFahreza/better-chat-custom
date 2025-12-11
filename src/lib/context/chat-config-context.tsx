@@ -27,6 +27,7 @@ const defaultConfig: ChatConfig = {
     content_padding: { top: 0, right: 0, bottom: 0, left: 0 },
     content_display: ["row"],
     content_show_avatar: true,
+    content_rounded: { top: 0, right: 0, bottom: 0, left: 0 },
   },
   name_config: {
     name_background_color: "transparent",
@@ -38,6 +39,7 @@ const defaultConfig: ChatConfig = {
     name_font_weight: "500",
     name_rounded: { top: 0, right: 0, bottom: 0, left: 0 },
     name_border: { border_width: 0, border_color: "unset" },
+    name_rotation: 0,
   },
 };
 
@@ -47,6 +49,9 @@ const ownerDefault: ChatConfig = {
   name_config: {
     ...defaultConfig.name_config,
     name_background_color: "#FFD600",
+    name_padding: { top: 2, right: 4, bottom: 2, left: 4 },
+    name_margin: { top: 0, right: 8, bottom: 0, left: 0 },
+    name_rounded: { top: 2, right: 2, bottom: 2, left: 2 },
   },
 };
 

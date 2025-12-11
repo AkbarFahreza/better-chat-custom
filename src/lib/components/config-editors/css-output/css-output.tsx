@@ -1,9 +1,10 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Copy } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 import { useChatConfig } from "../../../context/chat-config-context";
 import { CSSRenderer } from "./css-renderer";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function CSSOutput() {
   const [isCopied, setIsCopied] = useState(false);
@@ -19,11 +20,16 @@ export default function CSSOutput() {
 
   return (
     <div className="relative">
-      <Copy
-        size={34}
+      <div
         onClick={copyToClipboard}
-        className="cursor-pointer absolute top-3 right-3 px-2 bg-background rounded-sm"
-      />
+        className="cursor-pointer absolute top-3 right-3 p-3 bg-background rounded-sm"
+      >
+        <AnimatePresence>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            {isCopied ? <Check size={15} /> : <Copy size={15} />}
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       <SyntaxHighlighter
         language="css"

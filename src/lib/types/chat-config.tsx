@@ -1,9 +1,25 @@
 // types/chatConfig.ts
 
 export type FlexDir = "row" | "column";
+export type Sides = {
+  top: number;
+  right: number | "auto";
+  bottom: number;
+  left: number | "auto";
+};
+
+export type ContentConfig = {
+  content_background_color: string;
+  content_margin: Sides;
+  content_padding: { top: number; right: number; bottom: number; left: number };
+  content_display: FlexDir[];
+  content_show_avatar: boolean;
+  content_rounded: { top: number; right: number; bottom: number; left: number };
+};
+
 export type NameConfig = {
   name_background_color: string;
-  name_margin: { top: number; right: number; bottom: number; left: number };
+  name_margin: Sides;
   name_padding: { top: number; right: number; bottom: number; left: number };
   name_fonts_family: string;
   name_font_size: number;
@@ -11,14 +27,7 @@ export type NameConfig = {
   name_font_weight: string;
   name_rounded: { top: number; right: number; bottom: number; left: number };
   name_border: { border_width: number; border_color: string };
-};
-
-export type ContentConfig = {
-  content_background_color: string;
-  content_margin: { top: number; right: number; bottom: number; left: number };
-  content_padding: { top: number; right: number; bottom: number; left: number };
-  content_display: FlexDir[];
-  content_show_avatar: boolean;
+  name_rotation: number;
 };
 
 export type Role = "general" | "owner" | "moderator" | "member";
