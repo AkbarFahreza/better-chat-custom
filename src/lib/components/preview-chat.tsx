@@ -8,7 +8,6 @@ const MemoChat = React.memo(BasicChat);
 function PreviewChat() {
   const [previewColor, setPreviewColor] = useState<string>("rgba(0,0,0,0)");
   const [showColorPicker, setShowColorPicker] = useState<boolean>(false);
-  const [previewChat, setPreviewChat] = useState<boolean>(false);
 
   const pickerRef = useRef<HTMLDivElement | null>(null);
 
