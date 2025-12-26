@@ -58,14 +58,7 @@ function BasicChat({ role }: { role: Role }) {
     fontFamily: `"${name_config.name_font_family}"`,
     fontSize: name_config.name_font_size,
     fontWeight: name_config.name_font_weight,
-    color:
-      role === "moderator"
-        ? "#5E84F1"
-        : role === "member"
-        ? "#2BA640"
-        : role === "owner"
-        ? "#111111"
-        : name_config.name_font_color,
+    color: name_config.name_font_color,
   };
 
   const authorMsgStyle: React.CSSProperties = {
