@@ -62,7 +62,6 @@ export default function FontEditor({ textType }: textTypeProps) {
     updateConfig(selectedRole, {
       ...data,
       [fontcfg.key]: {
-        ...activeConfig,
         [field]: value,
       },
     });
