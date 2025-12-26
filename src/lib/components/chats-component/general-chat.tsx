@@ -6,23 +6,33 @@ function BasicChat({ role }: { role: Role }) {
   const { config } = useChatConfig();
   const chatConfig = config[role || "general"]; // ⬅ always use GENERAL config
 
-  const { content_config, name_config } = chatConfig;
+  const { content_config, name_config, message_config } = chatConfig;
 
   const flexDisplay = content_config.content_display[0] || ("row" as FlexDir);
-  const nameMargin = name_config.name_margin;
   const contentMargin = content_config.content_margin;
+  const nameMargin = name_config.name_margin;
+  const messageMargin = message_config.message_margin;
 
+  // simplify content margin thing
+  const contentMarginStr = [
+    `${contentMargin.top}px`,
+    contentMargin.right === "auto" ? "auto" : `${contentMargin.right}px`,
+    `${contentMargin.bottom}px`,
+    contentMargin.left === "auto" ? "auto" : `${contentMargin.left}px`,
+  ].join(" ");
+  // simplify name margin thing
   const nameMarginStr = [
     `${nameMargin.top}px`,
     nameMargin.right === "auto" ? "auto" : `${nameMargin.right}px`,
     `${nameMargin.bottom}px`,
     nameMargin.left === "auto" ? "auto" : `${nameMargin.left}px`,
   ].join(" ");
-  const contentMarginStr = [
-    `${contentMargin.top}px`,
-    contentMargin.right === "auto" ? "auto" : `${contentMargin.right}px`,
-    `${contentMargin.bottom}px`,
-    contentMargin.left === "auto" ? "auto" : `${contentMargin.left}px`,
+  // simplify message margin thing
+  const messageMarginStr = [
+    `${messageMargin.top}px`,
+    messageMargin.right === "auto" ? "auto" : `${messageMargin.right}px`,
+    `${messageMargin.bottom}px`,
+    messageMargin.left === "auto" ? "auto" : `${messageMargin.left}px`,
   ].join(" ");
 
   const CntStyle: React.CSSProperties = {
@@ -55,19 +65,23 @@ function BasicChat({ role }: { role: Role }) {
   };
 
   const authorNameStyle: React.CSSProperties = {
-    fontFamily: `"${name_config.name_font_family}"`,
+    fontFamily: name_config.name_font_family,
     fontSize: name_config.name_font_size,
     fontWeight: name_config.name_font_weight,
     color: name_config.name_font_color,
   };
 
   const authorMsgStyle: React.CSSProperties = {
-    color: "#fff",
-    fontSize: 13,
-    wordWrap: "break-word",
-    wordBreak: "break-word",
-    flexWrap: "wrap",
-    overflowWrap: "break-word",
+    background: message_config.message_background_color,
+    padding: `${message_config.message_padding.top}px ${message_config.message_padding.right}px ${message_config.message_padding.bottom}px ${message_config.message_padding.left}px`,
+    margin: messageMarginStr,
+    borderRadius: `${message_config.message_rounded.top}px ${message_config.message_rounded.right}px ${message_config.message_rounded.bottom}px ${message_config.message_rounded.left}px`,
+    border: `${message_config.message_border.border_width}px solid ${message_config.message_border.border_color}`,
+    rotate: `${message_config.message_rotation}deg`,
+    fontFamily: message_config.message_font_family,
+    fontSize: message_config.message_font_size,
+    fontWeight: message_config.message_font_weight,
+    color: message_config.message_font_color,
   };
 
   const authorName =
@@ -75,6 +89,8 @@ function BasicChat({ role }: { role: Role }) {
       ? "@RezaTheOwner"
       : role === "moderator"
       ? "@moderator_ngawi"
+      : role === "member"
+      ? "@mas_azril"
       : "@dekreza";
 
   const authorMessage =

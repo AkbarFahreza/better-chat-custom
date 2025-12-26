@@ -30,11 +30,25 @@ export type NameConfig = {
   name_rotation: number;
 };
 
+export type MessageConfig = {
+  message_background_color: string;
+  message_margin: Sides;
+  message_padding: { top: number; right: number; bottom: number; left: number };
+  message_fonts_family: string;
+  message_font_size: number;
+  message_font_color: string;
+  message_font_weight: string;
+  message_rounded: { top: number; right: number; bottom: number; left: number };
+  message_border: { border_width: number; border_color: string };
+  message_rotation: number;
+};
+
 export type Role = "general" | "owner" | "moderator" | "member";
 
 export type ChatConfig = {
   content_config: ContentConfig;
   name_config: NameConfig;
+  message_config: MessageConfig;
 };
 
 export type ChatConfigState = {

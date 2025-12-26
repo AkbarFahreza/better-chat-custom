@@ -5,7 +5,7 @@ import { useChatConfig } from "../../../context/chat-config-context";
 import FontEditor from "../fonts-editor";
 import NumberEditor from "../number-editor";
 
-function NameConfigs() {
+function MessageConfigs() {
   const { selectedRole, config, updateConfig } = useChatConfig();
   const data = config[selectedRole];
   const updateField = (field: Partial<typeof data>) => {
@@ -26,24 +26,24 @@ function NameConfigs() {
         {/* Background Color (with popup) */}
         <BackgroundEditor
           title="Background Color"
-          bgVal={data.name_config.name_background_color}
+          bgVal={data.message_config.message_background_color}
           textVal={
-            data.name_config.name_background_color === undefined
+            data.message_config.message_background_color === undefined
               ? "rgba(0.0.0.0,0)"
-              : data.name_config.name_background_color
+              : data.message_config.message_background_color
           }
-          val={data.name_config.name_background_color}
+          val={data.message_config.message_background_color}
           change={(c) => {
             updateField({
-              name_config: {
-                name_background_color: `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`,
+              message_config: {
+                message_background_color: `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`,
               },
             });
           }}
           click={() => {
             updateField({
-              name_config: {
-                name_background_color: `rgba(0,0,0,0)`,
+              message_config: {
+                message_background_color: `rgba(0,0,0,0)`,
               },
             });
           }}
@@ -52,22 +52,22 @@ function NameConfigs() {
         <BoxModelControls
           isSpacing={false}
           label="Corner Rounded"
-          values={data.name_config.name_rounded}
+          values={data.message_config.message_rounded}
           onChange={(next) => {
             updateField({
-              name_config: {
-                name_rounded: next,
+              message_config: {
+                message_rounded: next,
               },
             });
           }}
         />
         <NumberEditor
-          label="Name Rotate"
-          val={data.name_config.name_rotation}
+          label="Message Rotate"
+          val={data.message_config.message_rotation}
           change={(e) => {
             updateField({
-              name_config: {
-                name_rotation: parseInt(e.target.value),
+              message_config: {
+                message_rotation: parseInt(e.target.value),
               },
             });
           }}
@@ -76,11 +76,11 @@ function NameConfigs() {
         {/* Content Margin */}
         <BoxModelControls
           label="Margin"
-          values={data.name_config.name_margin}
+          values={data.message_config.message_margin}
           onChange={(next) => {
             updateField({
-              name_config: {
-                name_margin: next,
+              message_config: {
+                message_margin: next,
               },
             });
           }}
@@ -88,20 +88,20 @@ function NameConfigs() {
         {/* Content Padding */}
         <BoxModelControls
           label="Padding"
-          values={data.name_config.name_padding}
+          values={data.message_config.message_padding}
           onChange={(next) => {
             updateField({
-              name_config: {
-                name_padding: next,
+              message_config: {
+                message_padding: next,
               },
             });
           }}
         />
 
-        <FontEditor textType="nameText" />
+        <FontEditor textType="messageText" />
       </motion.div>
     </AnimatePresence>
   );
 }
 
-export default NameConfigs;
+export default MessageConfigs;

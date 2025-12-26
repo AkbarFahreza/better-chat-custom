@@ -33,13 +33,25 @@ const defaultConfig: ChatConfig = {
     name_background_color: "transparent",
     name_margin: { top: 0, right: 0, bottom: 0, left: 0 },
     name_padding: { top: 0, right: 8, bottom: 0, left: 0 },
-    name_fonts_family: "Arial",
+    name_fonts_family: "Quicksans",
     name_font_size: 13,
-    name_font_color: "#FFFFFF",
+    name_font_color: "rgba(255, 255, 255, 0.7)",
     name_font_weight: "500",
     name_rounded: { top: 0, right: 0, bottom: 0, left: 0 },
     name_border: { border_width: 0, border_color: "unset" },
     name_rotation: 0,
+  },
+  message_config: {
+    message_background_color: "transparent",
+    message_margin: { top: 0, right: 0, bottom: 0, left: 0 },
+    message_padding: { top: 0, right: 8, bottom: 0, left: 0 },
+    message_fonts_family: "Quicksans",
+    message_font_size: 13,
+    message_font_color: "#ffffff",
+    message_font_weight: "500",
+    message_rounded: { top: 0, right: 0, bottom: 0, left: 0 },
+    message_border: { border_width: 0, border_color: "unset" },
+    message_rotation: 0,
   },
 };
 
@@ -49,6 +61,7 @@ const ownerDefault: ChatConfig = {
   name_config: {
     ...defaultConfig.name_config,
     name_background_color: "#FFD600",
+    name_font_color: "#000000",
     name_padding: { top: 2, right: 4, bottom: 2, left: 4 },
     name_margin: { top: 0, right: 8, bottom: 0, left: 0 },
     name_rounded: { top: 2, right: 2, bottom: 2, left: 2 },
@@ -58,11 +71,19 @@ const ownerDefault: ChatConfig = {
 // MODERATOR default
 const moderatorDefault: ChatConfig = {
   ...defaultConfig,
+  name_config: {
+    ...defaultConfig.name_config,
+    name_font_color: "#5e84f1",
+  },
 };
 
 // MEMBER default
 const memberDefault: ChatConfig = {
   ...defaultConfig,
+  name_config: {
+    ...defaultConfig.name_config,
+    name_font_color: "#2ba640",
+  },
 };
 
 // INITIAL STATE

@@ -6,7 +6,11 @@ import ColorEditor from "./color-editor";
 import { loadGoogleFont } from "../../utils/load-google-font";
 import { useEffect, useRef, useState } from "react";
 
-export default function FontEditor() {
+interface textTypeProps {
+  textType: string;
+}
+
+export default function FontEditor({ textType }: textTypeProps) {
   const { fonts, loading } = useGoogleFonts();
   const { selectedRole, config, updateConfig } = useChatConfig();
 
@@ -16,6 +20,23 @@ export default function FontEditor() {
   const selectorRef = useRef<HTMLDivElement | null>(null);
 
   const data = config[selectedRole];
+
+  const FONT_MAP = {
+    nameText: {
+      key: "name_config",
+      family: "name_font_family",
+      color: "name_font_color",
+      weight: "name_font_weight",
+      size: "name_font_size",
+    },
+    messageText: {
+      key: "message_config",
+      family: "message_font_family",
+      color: "message_font_color",
+      weight: "message_font_weight",
+      size: "message_font_size",
+    },
+  } as const;
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -30,11 +51,22 @@ export default function FontEditor() {
       document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [showFontSelector]);
-  // Font Fams Selector
 
-  const selectedFont = fonts.find(
-    (f) => f.family === data.name_config.name_font_family
-  );
+  const fontcfg = FONT_MAP[textType as keyof typeof FONT_MAP];
+  const activeConfig = data[fontcfg.key];
+
+  const seletedFontType = activeConfig[fontcfg.family];
+  const selectedFont = fonts.find((f) => f.family === seletedFontType);
+
+  const updateFontField = (field: string, value: any) => {
+    updateConfig(selectedRole, {
+      ...data,
+      [fontcfg.key]: {
+        ...activeConfig,
+        [field]: value,
+      },
+    });
+  };
 
   const filteredFonts = fonts.filter((f) =>
     f.family.toLowerCase().includes(search.toLowerCase())
@@ -46,14 +78,6 @@ export default function FontEditor() {
       loadGoogleFont(f.family, weights);
     });
   }, [filteredFonts]);
-
-  // Value updater
-  const updateField = (field: Partial<typeof data>) => {
-    updateConfig(selectedRole, {
-      ...data,
-      ...field,
-    });
-  };
 
   const weights = selectedFont ? extractWeights(selectedFont.variants) : [];
 
@@ -95,11 +119,7 @@ export default function FontEditor() {
                     onClick={() => {
                       const weights = extractWeights(f.variants);
                       loadGoogleFont(f.family, weights);
-                      updateConfig(selectedRole, {
-                        name_config: {
-                          name_font_family: f.family,
-                        },
-                      });
+                      updateFontField(fontcfg.family, f.family);
                       setShowFontSelector(false);
                     }}
                     className="w-full text-left px-3 py-2 hover:bg-neutral-700"
@@ -118,22 +138,17 @@ export default function FontEditor() {
 
       <ColorEditor
         title="Font Color"
-        bgVal={data.name_config.name_font_color}
-        textVal={data.name_config.name_font_color}
-        val={data.name_config.name_font_color}
+        bgVal={activeConfig[fontcfg.color]}
+        textVal={activeConfig[fontcfg.color]}
+        val={activeConfig[fontcfg.color]}
         change={(c) => {
-          updateField({
-            name_config: {
-              name_font_color: `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`,
-            },
-          });
+          updateFontField(
+            fontcfg.color,
+            `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`
+          );
         }}
         click={() => {
-          updateField({
-            name_config: {
-              name_font_color: "rgba(0.0.0.0,0)",
-            },
-          });
+          updateFontField(fontcfg.color, `rgba(0,0,0,0)`);
         }}
       />
 
@@ -142,14 +157,8 @@ export default function FontEditor() {
         <label className="flex flex-row items-center">
           <p className="config-title">Font Weight</p>
           <select
-            value={data.name_config.name_font_weight}
-            onChange={(e) =>
-              updateConfig(selectedRole, {
-                name_config: {
-                  name_font_weight: e.target.value,
-                },
-              })
-            }
+            value={activeConfig[fontcfg.weight]}
+            onChange={(e) => updateFontField(fontcfg.weight, e.target.value)}
             className="bg-secondary w-24 px-3 py-1 rounded"
           >
             {weights.map((w) => (
@@ -165,13 +174,9 @@ export default function FontEditor() {
           Size
           <input
             type="number"
-            value={data.name_config.name_font_size}
+            value={activeConfig[fontcfg.size]}
             onChange={(e) =>
-              updateConfig(selectedRole, {
-                name_config: {
-                  name_font_size: parseInt(e.target.value),
-                },
-              })
+              updateFontField(fontcfg.size, parseInt(e.target.value))
             }
             className="bg-secondary px-2 w-13 py-1 rounded"
           />
