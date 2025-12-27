@@ -5,11 +5,6 @@ import { useState, useEffect, useRef } from "react";
 function SupportsButton() {
   const items = [
     {
-      name: "PayPal",
-      link: "https://paypal.me/revernry",
-      color: "#FFFFFF",
-    },
-    {
       name: "Trakteer",
       link: "https://trakteer.id/DekReza",
       color: "#be1e2d",
