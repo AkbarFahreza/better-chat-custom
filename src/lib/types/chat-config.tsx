@@ -21,7 +21,7 @@ export type NameConfig = {
   name_background_color: string;
   name_margin: Sides;
   name_padding: { top: number; right: number; bottom: number; left: number };
-  name_fonts_family: string;
+  name_font_family: string;
   name_font_size: number;
   name_font_color: string;
   name_font_weight: string;
