@@ -62,6 +62,7 @@ function BasicChat({ role }: { role: Role }) {
     borderRadius: `${name_config.name_rounded.top}px ${name_config.name_rounded.right}px ${name_config.name_rounded.bottom}px ${name_config.name_rounded.left}px`,
     border: `${name_config.name_border.border_width}px solid ${name_config.name_border.border_color}`,
     rotate: `${name_config.name_rotation}deg`,
+    width: "fit-content",
   };
 
   const authorNameStyle: React.CSSProperties = {

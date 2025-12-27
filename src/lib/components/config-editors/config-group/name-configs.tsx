@@ -10,7 +10,7 @@ function NameConfigs() {
   const data = config[selectedRole];
   const updateField = (field: Partial<typeof data>) => {
     updateConfig(selectedRole, {
-      ...data,
+      // ...data,
       ...field,
     });
   };
