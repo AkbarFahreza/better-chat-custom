@@ -66,7 +66,7 @@ function BasicChat({ role }: { role: Role }) {
   };
 
   const authorNameStyle: React.CSSProperties = {
-    fontFamily: name_config.name_font_family,
+    fontFamily: `${name_config.name_font_family}`,
     fontSize: name_config.name_font_size,
     fontWeight: name_config.name_font_weight,
     color: name_config.name_font_color,
@@ -79,7 +79,7 @@ function BasicChat({ role }: { role: Role }) {
     borderRadius: `${message_config.message_rounded.top}px ${message_config.message_rounded.right}px ${message_config.message_rounded.bottom}px ${message_config.message_rounded.left}px`,
     border: `${message_config.message_border.border_width}px solid ${message_config.message_border.border_color}`,
     rotate: `${message_config.message_rotation}deg`,
-    fontFamily: message_config.message_font_family,
+    fontFamily: `${message_config.message_font_family}`,
     fontSize: message_config.message_font_size,
     fontWeight: message_config.message_font_weight,
     color: message_config.message_font_color,
@@ -103,7 +103,6 @@ function BasicChat({ role }: { role: Role }) {
       ? "Yaudah makan aku sini kalo enak"
       : "Kenapa selalu diingatkan untuk tidak menyakiti tapi tidak diingatkan untuk tidak tersakiti";
 
-  console.log("ContentStyle", name_config.name_margin);
   return (
     <div className="items-center flex flex-row py-1">
       <div id="author-photo" style={AvatarStyle}>

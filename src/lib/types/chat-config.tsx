@@ -34,7 +34,7 @@ export type MessageConfig = {
   message_background_color: string;
   message_margin: Sides;
   message_padding: { top: number; right: number; bottom: number; left: number };
-  message_fonts_family: string;
+  message_font_family: string;
   message_font_size: number;
   message_font_color: string;
   message_font_weight: string;

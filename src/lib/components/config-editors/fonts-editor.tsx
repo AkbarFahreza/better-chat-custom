@@ -79,7 +79,6 @@ export default function FontEditor({ textType }: textTypeProps) {
 
   const weights = selectedFont ? extractWeights(selectedFont.variants) : [];
 
-  console.log(showFontSelector);
   if (loading) return <p>Loading Google Fonts…</p>;
 
   return (
