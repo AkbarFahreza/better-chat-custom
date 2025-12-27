@@ -1,5 +1,4 @@
 // Helper: convert {top,right,bottom,left} → "xpx ypx zpx wpx"
-import { loadGoogleFont } from "../../../utils/load-google-font";
 
 type FontMap = Map<string, Set<string>>;
 
