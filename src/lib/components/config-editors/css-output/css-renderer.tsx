@@ -341,6 +341,12 @@ body {
     css += `/*        ${role.toUpperCase()}        */\n`;
     css += `/* ========================= */\n\n`;
 
+    /* AVATAR */
+    css += `yt-live-chat-text-message-renderer${attr} #author-photo {\n`;
+    css += `  display : ${
+      content_config.content_show_avatar ? "flex" : "none"
+    } !important;\n`;
+    css += `}\n`;
     /* CONTENT */
     css += `yt-live-chat-text-message-renderer${attr} #content {\n`;
     css += `  background: ${content_config.content_background_color} !important;\n`;

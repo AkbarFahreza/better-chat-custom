@@ -40,6 +40,7 @@ function BasicChat({ role }: { role: Role }) {
     margin: contentMarginStr,
     flexDirection: flexDisplay,
     display: flexDisplay === "column" ? "flex" : "",
+    rowGap: flexDisplay === "column" ? 16 : 0,
     backgroundColor: content_config.content_background_color,
     borderRadius: `${content_config.content_rounded.top}px ${content_config.content_rounded.right}px ${content_config.content_rounded.bottom}px ${content_config.content_rounded.left}px`,
   };
