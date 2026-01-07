@@ -1,5 +1,5 @@
 import BackgroundEditor from "../color-editor";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import BoxModelControls from "../box-model-controls";
 import { useChatConfigContext } from "../../../context/chat-config-context";
 import FontEditor from "../fonts-editor";

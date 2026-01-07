@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 function SupportsButton() {
   const items = [
