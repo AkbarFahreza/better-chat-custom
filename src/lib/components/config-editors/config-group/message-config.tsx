@@ -15,99 +15,98 @@ function MessageConfigs() {
     });
   };
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ height: 0, translateY: -30 }}
-        animate={{ height: "auto", translateY: 0 }}
-        exit={{ height: 0, translateY: -30 }}
-        className="ml-6 text-sm flex flex-col gap-5"
-      >
-        {/* Background Color (with popup) */}
-        <BackgroundEditor
-          title="Background Color"
-          isBackgroundSelector={true}
-          bgVal={data.message_config.message_background_color}
-          textVal={
-            data.message_config.message_background_color === undefined
-              ? "rgba(0.0.0.0,0)"
-              : data.message_config.message_background_color
-          }
-          val={data.message_config.message_background_color}
-          change={(c) => {
-            updateField({
-              message_config: {
-                message_background_color: `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`,
-              },
-            });
-          }}
-          selecting={() => {
-            updateField({
-              message_config: {
-                message_background_color: `rgba(189,92,255,1)`,
-              },
-            });
-          }}
-          clearColor={() => {
-            updateField({
-              message_config: {
-                message_background_color: `rgba(0,0,0,0)`,
-              },
-            });
-          }}
-        />
-        {/* Border radius */}
-        <BoxModelControls
-          isSpacing={false}
-          label="Corner Rounded"
-          values={data.message_config.message_rounded}
-          onChange={(next) => {
-            updateField({
-              message_config: {
-                message_rounded: next,
-              },
-            });
-          }}
-        />
-        <NumberEditor
-          label="Message Rotate"
-          val={data.message_config.message_rotation}
-          change={(e) => {
-            updateField({
-              message_config: {
-                message_rotation: parseInt(e.target.value),
-              },
-            });
-          }}
-        />
-        <p className="text-main font-bold text-lg">Spacing</p>
-        {/* Content Margin */}
-        <BoxModelControls
-          label="Margin"
-          values={data.message_config.message_margin}
-          onChange={(next) => {
-            updateField({
-              message_config: {
-                message_margin: next,
-              },
-            });
-          }}
-        />
-        {/* Content Padding */}
-        <BoxModelControls
-          label="Padding"
-          values={data.message_config.message_padding}
-          onChange={(next) => {
-            updateField({
-              message_config: {
-                message_padding: next,
-              },
-            });
-          }}
-        />
+    <motion.div
+      key="message-config"
+      initial={{ height: 0, translateY: -30, opacity: 0 }}
+      animate={{ height: "auto", translateY: 0, opacity: 1 }}
+      exit={{ height: 0, translateY: -30, opacity: 0 }}
+      className="ml-6 text-sm flex flex-col gap-5"
+    >
+      {/* Background Color (with popup) */}
+      <BackgroundEditor
+        title="Background Color"
+        isBackgroundSelector={true}
+        bgVal={data.message_config.message_background_color}
+        textVal={
+          data.message_config.message_background_color === undefined
+            ? "rgba(0.0.0.0,0)"
+            : data.message_config.message_background_color
+        }
+        val={data.message_config.message_background_color}
+        change={(c) => {
+          updateField({
+            message_config: {
+              message_background_color: `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`,
+            },
+          });
+        }}
+        selecting={() => {
+          updateField({
+            message_config: {
+              message_background_color: `rgba(189,92,255,1)`,
+            },
+          });
+        }}
+        clearColor={() => {
+          updateField({
+            message_config: {
+              message_background_color: `rgba(0,0,0,0)`,
+            },
+          });
+        }}
+      />
+      {/* Border radius */}
+      <BoxModelControls
+        isSpacing={false}
+        label="Corner Rounded"
+        values={data.message_config.message_rounded}
+        onChange={(next) => {
+          updateField({
+            message_config: {
+              message_rounded: next,
+            },
+          });
+        }}
+      />
+      <NumberEditor
+        label="Message Rotate"
+        val={data.message_config.message_rotation}
+        change={(e) => {
+          updateField({
+            message_config: {
+              message_rotation: parseInt(e.target.value),
+            },
+          });
+        }}
+      />
+      <p className="text-main font-bold text-lg">Spacing</p>
+      {/* Content Margin */}
+      <BoxModelControls
+        label="Margin"
+        values={data.message_config.message_margin}
+        onChange={(next) => {
+          updateField({
+            message_config: {
+              message_margin: next,
+            },
+          });
+        }}
+      />
+      {/* Content Padding */}
+      <BoxModelControls
+        label="Padding"
+        values={data.message_config.message_padding}
+        onChange={(next) => {
+          updateField({
+            message_config: {
+              message_padding: next,
+            },
+          });
+        }}
+      />
 
-        <FontEditor textType="messageText" />
-      </motion.div>
-    </AnimatePresence>
+      <FontEditor textType="messageText" />
+    </motion.div>
   );
 }
 

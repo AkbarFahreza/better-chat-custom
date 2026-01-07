@@ -22,12 +22,30 @@ export default function CSSOutput() {
     <div className="relative">
       <div
         onClick={copyToClipboard}
-        className="cursor-pointer absolute top-3 right-3 p-3 bg-background rounded-sm"
+        className="cursor-pointer hover:scale-110 transition-all duration-150 absolute top-3 right-3 p-3 bg-background rounded-sm"
       >
-        <AnimatePresence>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            {isCopied ? <Check size={15} /> : <Copy size={15} />}
-          </motion.div>
+        <AnimatePresence mode="wait">
+          {isCopied ? (
+            <motion.div
+              key="check"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Check size={15} color="#67E15C" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="copy"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Copy size={15} />
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
 

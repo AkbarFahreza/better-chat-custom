@@ -35,8 +35,7 @@ function BetterChatCustom() {
                   >
                     Better Chat Custom{" "}
                     <span className="text-sm py-1 ml-4 px-4 text-yellow-300 rounded-3xl bg-secondary font-sans">
-                      {/* Dev 0.2.2 */}
-                      Beta 0.0.3
+                      Beta 0.0.4
                     </span>
                   </h1>
                   <p>Create your own Youtube Custom CSS chat with no code</p>

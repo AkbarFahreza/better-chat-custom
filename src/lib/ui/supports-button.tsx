@@ -24,18 +24,18 @@ function SupportsButton() {
   const [isOpen, setIsOpen] = useState(false);
   const supportBtnRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        supportBtnRef.current &&
-        !supportBtnRef.current.contains(e.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-    if (isOpen) document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
+  // useEffect(() => {
+  //   const handleClickOutside = (e: MouseEvent) => {
+  //     if (
+  //       supportBtnRef.current &&
+  //       !supportBtnRef.current.contains(e.target as Node)
+  //     ) {
+  //       setIsOpen(false);
+  //     }
+  //   };
+  //   if (isOpen) document.addEventListener("mousedown", handleClickOutside);
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, [isOpen]);
   return (
     <div className="relative">
       <div
@@ -52,13 +52,14 @@ function SupportsButton() {
           size={15}
         />
       </div>
-      {isOpen && (
-        <AnimatePresence>
+      <AnimatePresence mode="wait">
+        {isOpen && (
           <motion.div
+            key="support button"
             initial={{ opacity: 0, translateY: -30 }}
             animate={{ opacity: 1, translateY: 0 }}
             exit={{ opacity: 0, translateY: -30 }}
-            className="bg-secondary shadow-lg w-30 py-1 px-1 rounded-sm absolute top-[130%] left-0"
+            className="bg-secondary shadow-lg w-30 py-1 px-1 rounded-sm absolute top-[130%] left-0 -z-10"
             ref={supportBtnRef}
           >
             {items.map((item) => (
@@ -72,8 +73,8 @@ function SupportsButton() {
               </a>
             ))}
           </motion.div>
-        </AnimatePresence>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 }
