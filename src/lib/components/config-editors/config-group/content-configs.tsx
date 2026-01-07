@@ -1,14 +1,14 @@
 import React from "react";
-import type { FlexDir } from "../../../types/chat-config";
+import type { FlexDir } from "../../../types/config-types";
 import BooleanEditor from "../boolean-editor";
 import { AnimatePresence, motion } from "motion/react";
 import OptionsEditor from "../options-editor";
 import BoxModelControls from "../box-model-controls";
-import { useChatConfig } from "../../../context/chat-config-context";
+import { useChatConfigContext } from "../../../context/chat-config-context";
 import ColorEditor from "../color-editor";
 
 function ContentConfigs() {
-  const { selectedRole, config, updateConfig } = useChatConfig();
+  const { selectedRole, config, updateConfig } = useChatConfigContext();
   const data = config[selectedRole];
   const updateField = (field: Partial<typeof data>) => {
     updateConfig(selectedRole, {
@@ -58,6 +58,7 @@ function ContentConfigs() {
         {/* Background Color (with popup) */}
         <ColorEditor
           title="Background Color"
+          isBackgroundSelector={true}
           bgVal={data.content_config.content_background_color}
           textVal={
             data.content_config.content_background_color === undefined
@@ -72,7 +73,14 @@ function ContentConfigs() {
               },
             });
           }}
-          click={() => {
+          selecting={() => {
+            updateField({
+              content_config: {
+                content_background_color: `rgba(189,92,255,1)`,
+              },
+            });
+          }}
+          clearColor={() => {
             updateField({
               content_config: {
                 content_background_color: `rgba(0,0,0,0)`,
