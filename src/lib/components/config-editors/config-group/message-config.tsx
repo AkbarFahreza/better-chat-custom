@@ -1,12 +1,12 @@
 import BackgroundEditor from "../color-editor";
 import { AnimatePresence, motion } from "motion/react";
 import BoxModelControls from "../box-model-controls";
-import { useChatConfig } from "../../../context/chat-config-context";
+import { useChatConfigContext } from "../../../context/chat-config-context";
 import FontEditor from "../fonts-editor";
 import NumberEditor from "../number-editor";
 
 function MessageConfigs() {
-  const { selectedRole, config, updateConfig } = useChatConfig();
+  const { selectedRole, config, updateConfig } = useChatConfigContext();
   const data = config[selectedRole];
   const updateField = (field: Partial<typeof data>) => {
     updateConfig(selectedRole, {
@@ -14,7 +14,6 @@ function MessageConfigs() {
       ...field,
     });
   };
-
   return (
     <AnimatePresence>
       <motion.div
@@ -26,6 +25,7 @@ function MessageConfigs() {
         {/* Background Color (with popup) */}
         <BackgroundEditor
           title="Background Color"
+          isBackgroundSelector={true}
           bgVal={data.message_config.message_background_color}
           textVal={
             data.message_config.message_background_color === undefined
@@ -40,7 +40,14 @@ function MessageConfigs() {
               },
             });
           }}
-          click={() => {
+          selecting={() => {
+            updateField({
+              message_config: {
+                message_background_color: `rgba(189,92,255,1)`,
+              },
+            });
+          }}
+          clearColor={() => {
             updateField({
               message_config: {
                 message_background_color: `rgba(0,0,0,0)`,

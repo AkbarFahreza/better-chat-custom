@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { ChromePicker } from "react-color";
-import BasicChat from "./chats-component/general-chat";
+import BasicChat from "./chats-component/basic-chat";
 import React from "react";
 
 const MemoChat = React.memo(BasicChat);

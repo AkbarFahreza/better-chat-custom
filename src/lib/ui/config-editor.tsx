@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { ChevronUp } from "lucide-react";
 import { capitalizeFirstLetter } from "../components/functions";
-import { useChatConfig } from "../context/chat-config-context";
+import { useChatConfigContext } from "../context/chat-config-context";
 import SyncToggle from "./sync-config-toggle";
 import ContentConfigs from "../components/config-editors/config-group/content-configs";
 import NameConfigs from "../components/config-editors/config-group/name-configs";
 import MessageConfigs from "../components/config-editors/config-group/message-config";
 
 export function ConfigEditor() {
-  const { selectedRole } = useChatConfig();
+  const { selectedRole } = useChatConfigContext();
 
   const [isContentOpen, setIsContentOpen] = useState(true);
   const [isNameOpen, setIsNameOpen] = useState(true);

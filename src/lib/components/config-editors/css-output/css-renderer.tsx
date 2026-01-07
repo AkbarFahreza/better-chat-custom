@@ -362,7 +362,7 @@ body {
     if (isNameMargin) css += `  margin: ${nameMarginStr} !important;\n`;
     if (isNameRounded)
       css += `  border-radius: ${four(name_config.name_rounded)};\n`;
-    css += `  border: ${name_config.name_border.border_width}px solid ${name_config.name_border.border_color};\n`;
+    // css += `  border: ${name_config.name_border.border_width}px solid ${name_config.name_border.border_color};\n`;
     css += `  display: inline-flex;\n`;
     css += `}\n\n`;
 
@@ -374,6 +374,7 @@ body {
     css += `  font-size: ${name_config.name_font_size}px !important;\n`;
     css += `  font-weight: ${name_config.name_font_weight} !important;\n`;
     css += `  color: ${name_config.name_font_color} !important;\n`;
+    css += `  letter-spacing: ${name_config.name_font_letter_spacing} !important;\n`;
     css += `}\n`;
 
     /* MESSGAE WRAPPER */
@@ -383,6 +384,7 @@ body {
     if (isMessageMargin) css += `  margin: ${MessageMarginStr} !important;\n`;
     if (isMessageRounded)
       css += `  border-radius: ${four(message_config.name_rounded)};\n`;
+    css += `  letter-spacing: ${message_config.message_font_letter_spacing} !important;\n`;
     // css += `  border: ${name_config.name_border.border_width}px solid ${name_config.name_border.border_color};\n`;
     css += `}\n`;
 

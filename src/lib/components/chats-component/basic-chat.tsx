@@ -1,9 +1,9 @@
 import React from "react";
-import { useChatConfig } from "../../context/chat-config-context";
-import type { FlexDir, Role } from "../../types/chat-config";
+import { useChatConfigContext } from "../../context/chat-config-context";
+import type { FlexDir, Role } from "../../types/config-types";
 
 function BasicChat({ role }: { role: Role }) {
-  const { config } = useChatConfig();
+  const { config } = useChatConfigContext();
   const chatConfig = config[role || "general"]; // ⬅ always use GENERAL config
 
   const { content_config, name_config, message_config } = chatConfig;
@@ -71,6 +71,7 @@ function BasicChat({ role }: { role: Role }) {
     fontSize: name_config.name_font_size,
     fontWeight: name_config.name_font_weight,
     color: name_config.name_font_color,
+    letterSpacing: name_config.name_font_letter_spacing,
   };
 
   const authorMsgStyle: React.CSSProperties = {
@@ -84,6 +85,7 @@ function BasicChat({ role }: { role: Role }) {
     fontSize: message_config.message_font_size,
     fontWeight: message_config.message_font_weight,
     color: message_config.message_font_color,
+    letterSpacing: message_config.message_font_letter_spacing,
   };
 
   const authorName =
@@ -105,7 +107,7 @@ function BasicChat({ role }: { role: Role }) {
       : "Kenapa selalu diingatkan untuk tidak menyakiti tapi tidak diingatkan untuk tidak tersakiti";
 
   return (
-    <div className="items-center flex flex-row py-1">
+    <div className="items-start flex flex-row py-1">
       <div id="author-photo" style={AvatarStyle}>
         <img
           src="https://pbs.twimg.com/profile_images/1978277256003985408/VuGWrOYG_400x400.jpg"

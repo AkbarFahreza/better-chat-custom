@@ -1,6 +1,6 @@
 // context/chat-config-context.tsx
 import { createContext, useContext, useState } from "react";
-import type { ChatConfigState, Role, ChatConfig } from "../types/chat-config";
+import type { ChatConfigState, Role, ChatConfig } from "../types/config-types";
 
 // Deep merge helper → WAJIB agar tidak overwrite bagian lain
 function deepMerge<T>(target: T, source: Partial<T>): T {
@@ -37,6 +37,7 @@ const defaultConfig: ChatConfig = {
     name_font_size: 13,
     name_font_color: "rgba(255, 255, 255, 0.7)",
     name_font_weight: "500",
+    name_font_letter_spacing: 0,
     name_rounded: { top: 0, right: 0, bottom: 0, left: 0 },
     name_border: { border_width: 0, border_color: "unset" },
     name_rotation: 0,
@@ -49,6 +50,7 @@ const defaultConfig: ChatConfig = {
     message_font_size: 13,
     message_font_color: "#ffffff",
     message_font_weight: "500",
+    message_font_letter_spacing: 0,
     message_rounded: { top: 0, right: 0, bottom: 0, left: 0 },
     message_border: { border_width: 0, border_color: "unset" },
     message_rotation: 0,
@@ -103,7 +105,7 @@ export function ChatConfigProvider({
 }) {
   const [selectedRole, setSelectedRole] = useState<Role>("general");
   const [config, setConfig] = useState<ChatConfigState>(initialState);
-  const [syncEnabled, setSyncEnabled] = useState(false);
+  const [syncEnabled, setSyncEnabled] = useState(true);
 
   const updateConfig = (role: Role, partial: Partial<ChatConfig>) => {
     setConfig((prev) => {
@@ -143,8 +145,9 @@ export function ChatConfigProvider({
   );
 }
 
-export function useChatConfig() {
+export function useChatConfigContext() {
   const ctx = useContext(ChatConfigContext);
-  if (!ctx) throw new Error("useChatConfig must be used inside provider");
+  if (!ctx)
+    throw new Error("useChatConfigContext must be used inside provider");
   return ctx;
 }

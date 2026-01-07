@@ -2,13 +2,13 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
-import { useChatConfig } from "../../../context/chat-config-context";
+import { useChatConfigContext } from "../../../context/chat-config-context";
 import { CSSRenderer } from "./css-renderer";
 import { AnimatePresence, motion } from "motion/react";
 
 export default function CSSOutput() {
   const [isCopied, setIsCopied] = useState(false);
-  const { config } = useChatConfig();
+  const { config } = useChatConfigContext();
 
   const code = CSSRenderer(config);
 

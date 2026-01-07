@@ -1,7 +1,7 @@
 // components/FontEditor.tsx
 import { useGoogleFonts } from "../../context/google-fonts-context";
 import { extractWeights } from "../../utils/font-utils";
-import { useChatConfig } from "../../context/chat-config-context";
+import { useChatConfigContext } from "../../context/chat-config-context";
 import ColorEditor from "./color-editor";
 import { loadGoogleFont } from "../../utils/load-google-font";
 import { useEffect, useRef, useState } from "react";
@@ -12,7 +12,7 @@ interface textTypeProps {
 
 export default function FontEditor({ textType }: textTypeProps) {
   const { fonts, loading } = useGoogleFonts();
-  const { selectedRole, config, updateConfig } = useChatConfig();
+  const { selectedRole, config, updateConfig } = useChatConfigContext();
 
   const [search, setSearch] = useState("");
   const [showFontSelector, setShowFontSelector] = useState(false);
@@ -28,6 +28,7 @@ export default function FontEditor({ textType }: textTypeProps) {
       color: "name_font_color",
       weight: "name_font_weight",
       size: "name_font_size",
+      letter_spacing: "name_font_letter_spacing",
     },
     messageText: {
       key: "message_config",
@@ -35,6 +36,7 @@ export default function FontEditor({ textType }: textTypeProps) {
       color: "message_font_color",
       weight: "message_font_weight",
       size: "message_font_size",
+      letter_spacing: "message_font_letter_spacing",
     },
   } as const;
 
@@ -134,6 +136,7 @@ export default function FontEditor({ textType }: textTypeProps) {
       </label>
 
       <ColorEditor
+        isBackgroundSelector={false}
         title="Font Color"
         bgVal={activeConfig[fontcfg.color]}
         textVal={activeConfig[fontcfg.color]}
@@ -144,8 +147,8 @@ export default function FontEditor({ textType }: textTypeProps) {
             `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`
           );
         }}
-        click={() => {
-          updateFontField(fontcfg.color, `rgba(0,0,0,0)`);
+        clearColor={() => {
+          updateFontField(fontcfg.color, `rgba(255,255,255,1)`);
         }}
       />
 
@@ -178,6 +181,17 @@ export default function FontEditor({ textType }: textTypeProps) {
             className="bg-secondary px-2 w-13 py-1 rounded"
           />
         </label>
+      </div>
+      <div className="flex flex-row  items-center">
+        <label className="config-title py-1">Letter spacing</label>
+        <input
+          type="number"
+          value={activeConfig[fontcfg.letter_spacing]}
+          onChange={(e) =>
+            updateFontField(fontcfg.letter_spacing, parseInt(e.target.value))
+          }
+          className="bg-secondary px-2 w-13 py-1  rounded"
+        />
       </div>
     </div>
   );

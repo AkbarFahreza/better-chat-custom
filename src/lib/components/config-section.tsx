@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TabButton from "../ui/tab-button";
-import { useChatConfig } from "../context/chat-config-context";
-import type { Role } from "../types/chat-config";
+import { useChatConfigContext } from "../context/chat-config-context";
+import type { Role } from "../types/config-types";
 import { ConfigEditor } from "../ui/config-editor";
 import { capitalizeFirstLetter } from "./functions";
 import { Code } from "lucide-react";
@@ -11,7 +11,7 @@ const roles: Role[] = ["general", "owner", "moderator", "member"];
 
 function ConfigSection() {
   const [activeTab, setActiveTab] = useState("Basic Chat");
-  const { selectedRole, setSelectedRole } = useChatConfig();
+  const { selectedRole, setSelectedRole } = useChatConfigContext();
   return (
     <div className=" min-h-[85vh]">
       <div className="flex flex-row gap-4 border-b border-white/60 pb-4">
