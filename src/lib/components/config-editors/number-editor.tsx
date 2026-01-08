@@ -11,10 +11,11 @@ function NumberEditor({ label, val, change }: NumberEditorProps) {
       <input
         type="number"
         value={val}
+        step="0.1"
         onChange={change}
         className="bg-secondary mr-2 px-2 w-13 py-1 rounded"
       />
-      <p>deg</p>
+      {/* <p>deg</p> */}
     </label>
   );
 }

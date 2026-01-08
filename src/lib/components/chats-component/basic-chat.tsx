@@ -35,6 +35,14 @@ function BasicChat({ role }: { role: Role }) {
     messageMargin.left === "auto" ? "auto" : `${messageMargin.left}px`,
   ].join(" ");
 
+  // CHAT WRAPPER STYLE
+  // ==================
+  const ChatWrapperStyle: React.CSSProperties = {
+    animation: `${content_config.content_animation} ${content_config.content_animation_duration}s ease-in-out`,
+  };
+
+  // CONTENT STYLE
+  // ==================
   const CntStyle: React.CSSProperties = {
     padding: `${content_config.content_padding.top}px ${content_config.content_padding.right}px ${content_config.content_padding.bottom}px ${content_config.content_padding.left}px`,
     margin: contentMarginStr,
@@ -45,6 +53,8 @@ function BasicChat({ role }: { role: Role }) {
     borderRadius: `${content_config.content_rounded.top}px ${content_config.content_rounded.right}px ${content_config.content_rounded.bottom}px ${content_config.content_rounded.left}px`,
   };
 
+  // AVATAR STYLE
+  // ==================
   const AvatarStyle: React.CSSProperties = {
     display: content_config.content_show_avatar ? "block" : "none",
     width: 24,
@@ -56,6 +66,8 @@ function BasicChat({ role }: { role: Role }) {
     flexShrink: 0,
   };
 
+  // AUTHOR NAME CHIP STYLE
+  // ==================
   const authorNameChipStyle: React.CSSProperties = {
     background: name_config.name_background_color,
     padding: `${name_config.name_padding.top}px ${name_config.name_padding.right}px ${name_config.name_padding.bottom}px ${name_config.name_padding.left}px`,
@@ -66,6 +78,8 @@ function BasicChat({ role }: { role: Role }) {
     width: "fit-content",
   };
 
+  // AUTHOR NAME STYLE
+  // ==================
   const authorNameStyle: React.CSSProperties = {
     fontFamily: `${name_config.name_font_family}`,
     fontSize: name_config.name_font_size,
@@ -106,8 +120,13 @@ function BasicChat({ role }: { role: Role }) {
       ? "Yaudah makan aku sini kalo enak"
       : "Kenapa selalu diingatkan untuk tidak menyakiti tapi tidak diingatkan untuk tidak tersakiti";
 
+  // console.log(content_config.content_animation);
   return (
-    <div className="items-start flex flex-row py-1">
+    <div
+      key={`${content_config.content_animation_replay}`}
+      className="items-start flex flex-row py-1"
+      style={ChatWrapperStyle}
+    >
       <div id="author-photo" style={AvatarStyle}>
         <img
           src="https://pbs.twimg.com/profile_images/1978277256003985408/VuGWrOYG_400x400.jpg"

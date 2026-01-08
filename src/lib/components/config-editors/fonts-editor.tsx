@@ -174,7 +174,7 @@ export default function FontEditor({ textType }: textTypeProps) {
           Size
           <input
             type="number"
-            value={activeConfig[fontcfg.size]}
+            value={!activeConfig[fontcfg.size] ? 0 : activeConfig[fontcfg.size]}
             onChange={(e) =>
               updateFontField(fontcfg.size, parseInt(e.target.value))
             }
@@ -186,9 +186,14 @@ export default function FontEditor({ textType }: textTypeProps) {
         <label className="config-title py-1">Letter spacing</label>
         <input
           type="number"
-          value={activeConfig[fontcfg.letter_spacing]}
+          step="0.1"
+          value={
+            !activeConfig[fontcfg.letter_spacing]
+              ? 0
+              : activeConfig[fontcfg.letter_spacing]
+          }
           onChange={(e) =>
-            updateFontField(fontcfg.letter_spacing, parseInt(e.target.value))
+            updateFontField(fontcfg.letter_spacing, parseFloat(e.target.value))
           }
           className="bg-secondary px-2 w-13 py-1  rounded"
         />

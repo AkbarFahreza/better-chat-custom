@@ -21,8 +21,8 @@ function OptionsEditor({ title, val, change, opt }: OptionsEditorProps) {
         value={val}
         onChange={change}
       >
-        {opt.map((option, idx) => (
-          <option key={idx} value={option.value}>
+        {opt.map((option) => (
+          <option key={option.label} value={option.value}>
             {option.label}
           </option>
         ))}

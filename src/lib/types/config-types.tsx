@@ -1,6 +1,11 @@
 // types/chatConfig.ts
 
 export type FlexDir = "row" | "column";
+export type animationName =
+  | "fade_in_to_top_anim"
+  | "fade_in_to_bottom_anim"
+  | "fade_in_to_right_anim"
+  | "fade_in_to_left_anim";
 export type Sides = {
   top: number;
   right: number | "auto";
@@ -15,6 +20,9 @@ export type ContentConfig = {
   content_display: FlexDir[];
   content_show_avatar: boolean;
   content_rounded: { top: number; right: number; bottom: number; left: number };
+  content_animation: animationName[];
+  content_animation_duration: number;
+  content_animation_replay: number;
 };
 
 export type NameConfig = {

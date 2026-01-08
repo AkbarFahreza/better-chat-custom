@@ -2,6 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { ChromePicker } from "react-color";
 import BasicChat from "./chats-component/basic-chat";
 import React from "react";
+import { useChatConfigContext } from "../context/chat-config-context";
+import {
+  useAnimationStyles,
+  type AnimationName,
+} from "../context/animation-context";
 
 const MemoChat = React.memo(BasicChat);
 
@@ -26,6 +31,22 @@ function PreviewChat() {
       document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [showColorPicker]);
+
+  const { config } = useChatConfigContext();
+
+  // collect all active animations from all roles
+  const activeAnimations = Array.from(
+    new Set(
+      (
+        Object.values(config) as Array<{
+          content_config: {
+            content_animation: AnimationName[];
+          };
+        }>
+      ).flatMap((c) => c.content_config.content_animation)
+    )
+  );
+  useAnimationStyles(activeAnimations);
 
   return (
     <div

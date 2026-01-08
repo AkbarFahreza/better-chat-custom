@@ -55,7 +55,7 @@ function SupportsButton() {
       <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            key="support button"
+            key="support-button"
             initial={{ opacity: 0, translateY: -30 }}
             animate={{ opacity: 1, translateY: 0 }}
             exit={{ opacity: 0, translateY: -30 }}

@@ -1,4 +1,4 @@
-// Helper: convert {top,right,bottom,left} → "xpx ypx zpx wpx"
+import { animationKeyframesMap } from "../../../context/animation-context";
 
 type FontMap = Map<string, Set<string>>;
 
@@ -60,7 +60,6 @@ export function CSSRenderer(configState: Record<string, any>) {
   const STATIC_CSS = `
 /* ========================= */
 /* Made by : @dereza */
-/* Mentahan v3.0.3 */
 /* ========================= */
 
 yt-live-chat-banner-manager {
@@ -341,12 +340,23 @@ body {
     css += `/*        ${role.toUpperCase()}        */\n`;
     css += `/* ========================= */\n\n`;
 
+    /* WRAPPER */
+    css += `yt-live-chat-text-message-renderer${attr} {\n`;
+    css += `  animation: ${content_config.content_animation} ${content_config.content_animation_duration}s ease-in-out;\n`;
+    css += `}\n`;
+    // ANIMATION KEYFRAME
+    // ANIMATION KEYFRAME (TEXT OUTPUT ONLY)
+    css += content_config.content_animation
+      .map((name: any) => animationKeyframesMap[name])
+      .filter(Boolean)
+      .join("");
+    css += `\n`;
     /* AVATAR */
     css += `yt-live-chat-text-message-renderer${attr} #author-photo {\n`;
     css += `  display : ${
       content_config.content_show_avatar ? "flex" : "none"
     } !important;\n`;
-    css += `}\n`;
+    css += `}\n\n`;
     /* CONTENT */
     css += `yt-live-chat-text-message-renderer${attr} #content {\n`;
     css += `  background: ${content_config.content_background_color} !important;\n`;

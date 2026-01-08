@@ -6,7 +6,6 @@ import { ConfigEditor } from "../ui/config-editor";
 import { capitalizeFirstLetter } from "./functions";
 import { Code } from "lucide-react";
 import CSSOutput from "./config-editors/css-output/css-output";
-import { AnimatePresence } from "motion/react";
 
 const roles: Role[] = ["general", "owner", "moderator", "member"];
 
@@ -39,32 +38,30 @@ function ConfigSection() {
       </div>
 
       <div className=" relative overflow-hidden">
-        <AnimatePresence mode="wait">
-          {activeTab === "Basic Chat" ? (
-            <div className="flex flex-row gap-3 mt-4 mb-4">
-              {roles.map((r) => (
-                <TabButton
-                  key={r}
-                  isActive={selectedRole === r}
-                  onClick={() => setSelectedRole(r)}
-                >
-                  {capitalizeFirstLetter(r)}
-                </TabButton>
-              ))}
-            </div>
-          ) : (
-            activeTab === "Event Chat" && <div>I am to lazy to build this</div>
-          )}
-          {activeTab === "Basic Chat" ? (
-            <ConfigEditor />
-          ) : activeTab === "Event Chat" ? (
-            <div>Event Chat</div>
-          ) : activeTab === "Show CSS" ? (
-            <CSSOutput />
-          ) : (
-            ""
-          )}
-        </AnimatePresence>
+        {activeTab === "Basic Chat" ? (
+          <div className="flex flex-row gap-3 mt-4 mb-4">
+            {roles.map((r) => (
+              <TabButton
+                key={r}
+                isActive={selectedRole === r}
+                onClick={() => setSelectedRole(r)}
+              >
+                {capitalizeFirstLetter(r)}
+              </TabButton>
+            ))}
+          </div>
+        ) : (
+          activeTab === "Event Chat" && <div>I am to lazy to build this</div>
+        )}
+        {activeTab === "Basic Chat" ? (
+          <ConfigEditor />
+        ) : activeTab === "Event Chat" ? (
+          <div>Event Chat</div>
+        ) : activeTab === "Show CSS" ? (
+          <CSSOutput />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
