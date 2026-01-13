@@ -86,6 +86,7 @@ function BasicChat({ role }: { role: Role }) {
     fontWeight: name_config.name_font_weight,
     color: name_config.name_font_color,
     letterSpacing: name_config.name_font_letter_spacing,
+    textAlign: name_config.name_text_align,
   };
 
   const authorMsgStyle: React.CSSProperties = {
@@ -95,10 +96,12 @@ function BasicChat({ role }: { role: Role }) {
     borderRadius: `${message_config.message_rounded.top}px ${message_config.message_rounded.right}px ${message_config.message_rounded.bottom}px ${message_config.message_rounded.left}px`,
     border: `${message_config.message_border.border_width}px solid ${message_config.message_border.border_color}`,
     rotate: `${message_config.message_rotation}deg`,
+    // font configs
+    color: message_config.message_font_color,
     fontFamily: `${message_config.message_font_family}`,
     fontSize: message_config.message_font_size,
     fontWeight: message_config.message_font_weight,
-    color: message_config.message_font_color,
+    textAlign: message_config.message_text_align,
     letterSpacing: message_config.message_font_letter_spacing,
   };
 
@@ -120,7 +123,6 @@ function BasicChat({ role }: { role: Role }) {
       ? "Yaudah makan aku sini kalo enak"
       : "Kenapa selalu diingatkan untuk tidak menyakiti tapi tidak diingatkan untuk tidak tersakiti";
 
-  // console.log(content_config.content_animation);
   return (
     <div
       key={`${content_config.content_animation_replay}`}

@@ -44,6 +44,7 @@ const defaultConfig: ChatConfig = {
     name_rounded: { top: 0, right: 0, bottom: 0, left: 0 },
     name_border: { border_width: 0, border_color: "unset" },
     name_rotation: 0,
+    name_text_align: ["left"],
   },
   message_config: {
     message_background_color: "transparent",
@@ -57,6 +58,7 @@ const defaultConfig: ChatConfig = {
     message_rounded: { top: 0, right: 0, bottom: 0, left: 0 },
     message_border: { border_width: 0, border_color: "unset" },
     message_rotation: 0,
+    message_text_align: ["left"],
   },
 };
 

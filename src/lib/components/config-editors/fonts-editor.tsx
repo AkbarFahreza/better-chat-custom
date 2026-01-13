@@ -5,6 +5,7 @@ import { useChatConfigContext } from "../../context/chat-config-context";
 import ColorEditor from "./color-editor";
 import { loadGoogleFont } from "../../utils/load-google-font";
 import { useEffect, useRef, useState } from "react";
+import { TextAlignCenter, TextAlignEnd, TextAlignStart } from "lucide-react";
 
 interface textTypeProps {
   textType: string;
@@ -29,6 +30,7 @@ export default function FontEditor({ textType }: textTypeProps) {
       weight: "name_font_weight",
       size: "name_font_size",
       letter_spacing: "name_font_letter_spacing",
+      text_align: "name_text_align",
     },
     messageText: {
       key: "message_config",
@@ -37,8 +39,19 @@ export default function FontEditor({ textType }: textTypeProps) {
       weight: "message_font_weight",
       size: "message_font_size",
       letter_spacing: "message_font_letter_spacing",
+      text_align: "message_text_align",
     },
   } as const;
+
+  const alignButtons = [
+    { name: "Text left", icon: <TextAlignStart size={20} />, opts: "left" },
+    {
+      name: "Text center",
+      icon: <TextAlignCenter size={20} />,
+      opts: "center",
+    },
+    { name: "Text right", icon: <TextAlignEnd size={20} />, opts: "right" },
+  ];
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -80,6 +93,8 @@ export default function FontEditor({ textType }: textTypeProps) {
   }, [filteredFonts]);
 
   const weights = selectedFont ? extractWeights(selectedFont.variants) : [];
+
+  const [setSelectedAlign] = useState<string>(fontcfg.text_align);
 
   if (loading) return <p>Loading Google Fonts…</p>;
 
@@ -182,7 +197,7 @@ export default function FontEditor({ textType }: textTypeProps) {
           />
         </label>
       </div>
-      <div className="flex flex-row  items-center">
+      <div className="flex flex-roDw  items-center">
         <label className="config-title py-1">Letter spacing</label>
         <input
           type="number"
@@ -197,6 +212,27 @@ export default function FontEditor({ textType }: textTypeProps) {
           }
           className="bg-secondary px-2 w-13 py-1  rounded"
         />
+        <div className="flex flex-row gap-3 ml-3">
+          {alignButtons.map((item) => {
+            const isSelected = activeConfig[fontcfg.text_align] === item.opts;
+
+            return (
+              <button
+                className={[
+                  "p-1 rounded-sm cursor-pointer transition-all duration-150",
+                  isSelected ? "bg-main" : "bg-secondary hover:bg-secondary/70",
+                ].join(" ")}
+                key={item.name}
+                onClick={() => {
+                  setSelectedAlign;
+                  updateFontField(fontcfg.text_align, item.opts);
+                }}
+              >
+                {item.icon}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

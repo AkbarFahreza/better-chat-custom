@@ -1,7 +1,7 @@
 {
   "name": "better-chat-custom",
   "private": true,
-  "version": "Beta 0.0.4",
+  "version": "Beta 0.0.5",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -287,6 +287,9 @@ body {
         ? `  display: flex;\n  flex-direction: column;`
         : "";
 
+    // ========================
+    // Content Validation
+    // ========================
     const contentMargin = content_config.content_margin;
     const nameMargin = name_config.name_margin;
     const messageMargin = message_config.message_margin;
@@ -298,6 +301,14 @@ body {
       contentMargin.left === "auto" ? "auto" : `${contentMargin.left}px`,
     ].join(" ");
 
+    const isContentMargin = Object.values(contentMargin).some((v) => v !== 0);
+    const isContentRounded = Object.values(content_config.content_rounded).some(
+      (v) => v !== 0
+    );
+
+    // ========================
+    // Name Validation
+    // ========================
     const nameMarginStr = [
       `${nameMargin.top}px`,
       nameMargin.right === "auto" ? "auto" : `${nameMargin.right}px`,
@@ -310,6 +321,9 @@ body {
       (v) => v !== 0
     );
 
+    // ========================
+    // Message Validation
+    // ========================
     const MessageMarginStr = [
       `${messageMargin.top}px`,
       messageMargin.right === "auto" ? "auto" : `${messageMargin.right}px`,
@@ -360,9 +374,13 @@ body {
     /* CONTENT */
     css += `yt-live-chat-text-message-renderer${attr} #content {\n`;
     css += `  background: ${content_config.content_background_color} !important;\n`;
-    css += `  margin: ${contentMarginStr} !important;\n`;
+    if (isContentMargin) css += `  margin: ${contentMarginStr} !important;\n`;
     css += `  padding: ${four(content_config.content_padding)} !important;\n`;
     if (contentFlex) css += contentFlex + "\n";
+    if (isContentRounded)
+      css += `  border-radius: ${four(
+        content_config.content_rounded
+      )} !important;\n`;
     css += `}\n\n`;
 
     /* NAME CHIP */
@@ -372,8 +390,8 @@ body {
     if (isNameMargin) css += `  margin: ${nameMarginStr} !important;\n`;
     if (isNameRounded)
       css += `  border-radius: ${four(name_config.name_rounded)};\n`;
-    // css += `  border: ${name_config.name_border.border_width}px solid ${name_config.name_border.border_color};\n`;
     css += `  display: inline-flex;\n`;
+    css += `  width: fit-content !important;\n`;
     css += `}\n\n`;
 
     /* NAME TEXT */
@@ -385,6 +403,7 @@ body {
     css += `  font-weight: ${name_config.name_font_weight} !important;\n`;
     css += `  color: ${name_config.name_font_color} !important;\n`;
     css += `  letter-spacing: ${name_config.name_font_letter_spacing} !important;\n`;
+    css += `  text-align: ${name_config.name_text_align} !important;\n`;
     css += `}\n`;
 
     /* MESSGAE WRAPPER */
@@ -393,9 +412,10 @@ body {
     css += `  padding: ${four(message_config.message_padding)} !important;\n`;
     if (isMessageMargin) css += `  margin: ${MessageMarginStr} !important;\n`;
     if (isMessageRounded)
-      css += `  border-radius: ${four(message_config.name_rounded)};\n`;
+      css += `  border-radius: ${four(
+        message_config.message_rounded
+      )} !important;\n`;
     css += `  letter-spacing: ${message_config.message_font_letter_spacing} !important;\n`;
-    // css += `  border: ${name_config.name_border.border_width}px solid ${name_config.name_border.border_color};\n`;
     css += `}\n`;
 
     /* MESSGAE */
@@ -407,6 +427,7 @@ body {
     css += `  font-size: ${message_config.message_font_size}px !important;\n`;
     css += `  font-weight: ${message_config.message_font_weight} !important;\n`;
     css += `  color: ${message_config.message_font_color} !important;\n`;
+    css += `  text-align: ${message_config.message_text_align} !important;\n`;
     css += `}\n`;
 
     return css;

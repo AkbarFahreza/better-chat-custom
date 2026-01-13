@@ -25,12 +25,6 @@ function ContentConfigs() {
   ];
 
   const { animationOpts } = AnimationContext();
-  // const animationOpts = [
-  //   { value: "row", label: "Row" },
-  //   { value: "column", label: "Column" },
-  // ];
-
-  // console.log(data.content_config.content_animation);
 
   return (
     <motion.div

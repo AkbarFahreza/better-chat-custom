@@ -1,5 +1,6 @@
 // types/chatConfig.ts
 
+export type textAlign = "left" | "center" | "right";
 export type FlexDir = "row" | "column";
 export type animationName =
   | "fade_in_to_top_anim"
@@ -37,6 +38,7 @@ export type NameConfig = {
   name_rounded: { top: number; right: number; bottom: number; left: number };
   name_border: { border_width: number; border_color: string };
   name_rotation: number;
+  name_text_align: textAlign[];
 };
 
 export type MessageConfig = {
@@ -51,6 +53,7 @@ export type MessageConfig = {
   message_rounded: { top: number; right: number; bottom: number; left: number };
   message_border: { border_width: number; border_color: string };
   message_rotation: number;
+  message_text_align: textAlign[];
 };
 
 export type Role = "general" | "owner" | "moderator" | "member";
