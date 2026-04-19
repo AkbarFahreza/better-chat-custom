@@ -16,7 +16,7 @@ function four(obj: {
 function collectFonts(
   fontMap: FontMap,
   family: string,
-  weight: number | string
+  weight: number | string,
 ) {
   if (!family) return;
 
@@ -46,7 +46,7 @@ function buildFontImports(fontMap: FontMap) {
 
     css += `@import url("https://fonts.googleapis.com/css2?family=${family.replace(
       / /g,
-      "+"
+      "+",
     )}:wght@${w}&display=swap");\n`;
   });
 
@@ -303,7 +303,7 @@ body {
 
     const isContentMargin = Object.values(contentMargin).some((v) => v !== 0);
     const isContentRounded = Object.values(content_config.content_rounded).some(
-      (v) => v !== 0
+      (v) => v !== 0,
     );
 
     // ========================
@@ -318,7 +318,7 @@ body {
 
     const isNameMargin = Object.values(nameMargin).some((v) => v !== 0);
     const isNameRounded = Object.values(name_config.name_rounded).some(
-      (v) => v !== 0
+      (v) => v !== 0,
     );
 
     // ========================
@@ -333,19 +333,19 @@ body {
 
     const isMessageMargin = Object.values(messageMargin).some((v) => v !== 0);
     const isMessageRounded = Object.values(message_config.message_rounded).some(
-      (v) => v !== 0
+      (v) => v !== 0,
     );
 
     collectFonts(
       fontMap,
       name_config.name_font_family,
-      name_config.name_font_weight
+      name_config.name_font_weight,
     );
 
     collectFonts(
       fontMap,
       message_config.message_font_family,
-      message_config.message_font_weight
+      message_config.message_font_weight,
     );
 
     let css = "";
@@ -379,7 +379,7 @@ body {
     if (contentFlex) css += contentFlex + "\n";
     if (isContentRounded)
       css += `  border-radius: ${four(
-        content_config.content_rounded
+        content_config.content_rounded,
       )} !important;\n`;
     css += `}\n\n`;
 
@@ -397,7 +397,7 @@ body {
     /* NAME TEXT */
     css += `yt-live-chat-text-message-renderer${attr} #author-name {\n`;
     css += `  font-family: ${fontStack(
-      name_config.name_font_family
+      name_config.name_font_family,
     )} !important;\n`;
     css += `  font-size: ${name_config.name_font_size}px !important;\n`;
     css += `  font-weight: ${name_config.name_font_weight} !important;\n`;
@@ -413,16 +413,17 @@ body {
     if (isMessageMargin) css += `  margin: ${MessageMarginStr} !important;\n`;
     if (isMessageRounded)
       css += `  border-radius: ${four(
-        message_config.message_rounded
+        message_config.message_rounded,
       )} !important;\n`;
     css += `  letter-spacing: ${message_config.message_font_letter_spacing} !important;\n`;
+    css += `  display: inline-block !important;\n`;
     css += `}\n`;
 
     /* MESSGAE */
     css += `yt-live-chat-text-message-renderer${attr} #message *,\n`;
     css += `yt-live-chat-text-message-renderer${attr} #message {\n`;
     css += `  font-family: ${fontStack(
-      message_config.message_font_family
+      message_config.message_font_family,
     )} !important;\n`;
     css += `  font-size: ${message_config.message_font_size}px !important;\n`;
     css += `  font-weight: ${message_config.message_font_weight} !important;\n`;

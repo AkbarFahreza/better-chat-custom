@@ -103,25 +103,26 @@ function BasicChat({ role }: { role: Role }) {
     fontWeight: message_config.message_font_weight,
     textAlign: message_config.message_text_align,
     letterSpacing: message_config.message_font_letter_spacing,
+    display: "inline-block",
   };
 
   const authorName =
     role === "owner"
       ? "@RezaTheOwner"
       : role === "moderator"
-      ? "@moderator_ngawi"
-      : role === "member"
-      ? "@mas_azril"
-      : "@dekreza";
+        ? "@moderator_ngawi"
+        : role === "member"
+          ? "@mas_azril"
+          : "@dekreza";
 
   const authorMessage =
     role === "owner"
       ? "Seporsi mie ayam sebelum porsi lainnya"
       : role === "moderator"
-      ? "Lha elu mah enak member"
-      : role === "member"
-      ? "Yaudah makan aku sini kalo enak"
-      : "Kenapa selalu diingatkan untuk tidak menyakiti tapi tidak diingatkan untuk tidak tersakiti";
+        ? "Lha elu mah enak member"
+        : role === "member"
+          ? "Yaudah makan aku sini kalo enak"
+          : "Kenapa selalu diingatkan untuk tidak menyakiti tapi tidak diingatkan untuk tidak tersakiti";
 
   return (
     <div
