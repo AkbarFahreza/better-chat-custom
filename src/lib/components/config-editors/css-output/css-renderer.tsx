@@ -404,9 +404,15 @@ body {
     css += `  color: ${name_config.name_font_color} !important;\n`;
     css += `  letter-spacing: ${name_config.name_font_letter_spacing} !important;\n`;
     css += `  text-align: ${name_config.name_text_align} !important;\n`;
+    css += `  line-height: ${name_config.name_font_line_height}% !important;\n`;
     css += `}\n`;
 
     /* MESSGAE WRAPPER */
+    if (content_config.content_display[0] === "column") {
+      css += `yt-live-chat-text-message-renderer${attr} #message-container {\n`;
+      css += `  display: flex !important;\n`;
+      css += `}\n`;
+    }
     css += `yt-live-chat-text-message-renderer${attr} #message {\n`;
     css += `  background: ${message_config.message_background_color} !important;\n`;
     css += `  padding: ${four(message_config.message_padding)} !important;\n`;
@@ -416,7 +422,9 @@ body {
         message_config.message_rounded,
       )} !important;\n`;
     css += `  letter-spacing: ${message_config.message_font_letter_spacing} !important;\n`;
-    css += `  display: inline-block !important;\n`;
+    if (content_config.content_display[0] === "column") {
+      css += `  flex: 1 !important;\n`;
+    }
     css += `}\n`;
 
     /* MESSGAE */
@@ -429,6 +437,7 @@ body {
     css += `  font-weight: ${message_config.message_font_weight} !important;\n`;
     css += `  color: ${message_config.message_font_color} !important;\n`;
     css += `  text-align: ${message_config.message_text_align} !important;\n`;
+    css += `  line-height: ${message_config.message_font_line_height}% !important;\n`;
     css += `}\n`;
 
     return css;

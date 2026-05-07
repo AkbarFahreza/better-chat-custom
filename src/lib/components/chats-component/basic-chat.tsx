@@ -87,6 +87,7 @@ function BasicChat({ role }: { role: Role }) {
     color: name_config.name_font_color,
     letterSpacing: name_config.name_font_letter_spacing,
     textAlign: name_config.name_text_align,
+    lineHeight: `${name_config.name_font_line_height}%`,
   };
 
   const authorMsgStyle: React.CSSProperties = {
@@ -103,7 +104,7 @@ function BasicChat({ role }: { role: Role }) {
     fontWeight: message_config.message_font_weight,
     textAlign: message_config.message_text_align,
     letterSpacing: message_config.message_font_letter_spacing,
-    display: "inline-block",
+    lineHeight: `${message_config.message_font_line_height}%`,
   };
 
   const authorName =
@@ -132,7 +133,7 @@ function BasicChat({ role }: { role: Role }) {
     >
       <div id="author-photo" style={AvatarStyle}>
         <img
-          src="https://pbs.twimg.com/profile_images/1978277256003985408/VuGWrOYG_400x400.jpg"
+          src="https://pbs.twimg.com/profile_images/2050218475935973376/w2omvBRZ_400x400.jpg"
           alt="user"
         />
       </div>

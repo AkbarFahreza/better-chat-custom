@@ -35,6 +35,7 @@ export type NameConfig = {
   name_font_color: string;
   name_font_weight: string;
   name_font_letter_spacing: number;
+  name_font_line_height: number;
   name_rounded: { top: number; right: number; bottom: number; left: number };
   name_border: { border_width: number; border_color: string };
   name_rotation: number;
@@ -50,6 +51,7 @@ export type MessageConfig = {
   message_font_color: string;
   message_font_weight: string;
   message_font_letter_spacing: number;
+  message_font_line_height: number;
   message_rounded: { top: number; right: number; bottom: number; left: number };
   message_border: { border_width: number; border_color: string };
   message_rotation: number;

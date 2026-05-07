@@ -31,6 +31,7 @@ export default function FontEditor({ textType }: textTypeProps) {
       size: "name_font_size",
       letter_spacing: "name_font_letter_spacing",
       text_align: "name_text_align",
+      line_height: "name_font_line_height",
     },
     messageText: {
       key: "message_config",
@@ -40,6 +41,7 @@ export default function FontEditor({ textType }: textTypeProps) {
       size: "message_font_size",
       letter_spacing: "message_font_letter_spacing",
       text_align: "message_text_align",
+      line_height: "message_font_line_height",
     },
   } as const;
 
@@ -82,7 +84,7 @@ export default function FontEditor({ textType }: textTypeProps) {
   };
 
   const filteredFonts = fonts.filter((f) =>
-    f.family.toLowerCase().includes(search.toLowerCase())
+    f.family.toLowerCase().includes(search.toLowerCase()),
   );
 
   useEffect(() => {
@@ -159,7 +161,7 @@ export default function FontEditor({ textType }: textTypeProps) {
         change={(c) => {
           updateFontField(
             fontcfg.color,
-            `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`
+            `rgba(${c.rgb.r},${c.rgb.g},${c.rgb.b},${c.rgb.a})`,
           );
         }}
         clearColor={() => {
@@ -233,6 +235,23 @@ export default function FontEditor({ textType }: textTypeProps) {
             );
           })}
         </div>
+      </div>
+      <div className="flex flex-row  items-center">
+        <label className="config-title py-1">Line Height</label>
+        <input
+          type="number"
+          step="0.1"
+          value={
+            !activeConfig[fontcfg.line_height]
+              ? 0
+              : activeConfig[fontcfg.line_height]
+          }
+          onChange={(e) =>
+            updateFontField(fontcfg.line_height, parseFloat(e.target.value))
+          }
+          className="bg-secondary px-2 w-13 py-1  rounded"
+        />
+        <label className="ml-2 py-1">%</label>
       </div>
     </div>
   );
